@@ -1,52 +1,74 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ContactForm from '../components/sections/Contact.astro';
-// Ya no importamos Navbar ni Footer aquí porque están en el Layout
+const cultivos = ["Café", "Cacao", "Palta", "Piña", "Papa", "Hortalizas", "Otro"];
 ---
 
-<Layout title="Contáctanos">
-  
-  <div class="bg-brand-light py-16 border-b border-brand-green/10">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <h1 class="text-5xl font-black text-brand-dark uppercase italic mb-4">Ubicación y Contacto</h1>
-      <p class="text-brand-earth text-lg max-w-2xl mx-auto">
-        Visita nuestra planta en Huachipa o coordina tus envíos a nivel nacional.
-      </p>
+<section id="contacto" class="py-24 bg-brand-dark relative overflow-hidden">
+  <div class="max-w-4xl mx-auto px-4 relative z-10">
+    <div class="bg-white rounded-[3rem] p-8 md:p-16 shadow-2xl">
+      <div class="text-center mb-10">
+        <h3 class="text-3xl font-black text-brand-dark uppercase italic mb-2">Solicitar Cotización</h3>
+        <p class="text-brand-earth font-medium">Atendemos pedidos a todo el Perú y Bolivia.</p>
+      </div>
+
+      <form id="whatsapp-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-black uppercase text-brand-green ml-2">Nombre Completo</label>
+          <input id="nombre" type="text" required placeholder="Ej. Juan Pérez" class="bg-brand-light p-4 rounded-2xl border-none focus:ring-2 focus:ring-brand-sun outline-none" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-black uppercase text-brand-green ml-2">Celular / WhatsApp</label>
+          <input id="telefono" type="tel" required placeholder="Ej. 900 000 000" class="bg-brand-light p-4 rounded-2xl border-none focus:ring-2 focus:ring-brand-sun outline-none" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-black uppercase text-brand-green ml-2">Ubicación / Ciudad</label>
+          <input id="ciudad" type="text" required placeholder="Ej. Huánuco, Perú" class="bg-brand-light p-4 rounded-2xl border-none focus:ring-2 focus:ring-brand-sun outline-none" />
+        </div>
+        <div class="flex flex-col gap-2">
+          <label class="text-xs font-black uppercase text-brand-green ml-2">Tu Cultivo Principal</label>
+          <select id="cultivo" class="bg-brand-light p-4 rounded-2xl border-none focus:ring-2 focus:ring-brand-sun outline-none appearance-none">
+            {cultivos.map(c => <option value={c}>{c}</option>)}
+          </select>
+        </div>
+        <div class="md:col-span-2 flex flex-col gap-2">
+          <label class="text-xs font-black uppercase text-brand-green ml-2">Mensaje Adicional</label>
+          <textarea id="mensaje" rows="4" placeholder="Ej. Necesito cotizar 20 sacos de Cosecha Verde..." class="bg-brand-light p-4 rounded-2xl border-none focus:ring-2 focus:ring-brand-sun outline-none"></textarea>
+        </div>
+        
+        <button type="submit" class="md:col-span-2 bg-brand-sun text-white font-black py-5 rounded-2xl text-xl hover:bg-brand-dark transition-colors shadow-xl shadow-brand-sun/20 tracking-tighter uppercase italic flex justify-center items-center gap-2">
+          <span>🚀</span> Enviar a WhatsApp
+        </button>
+      </form>
+    </div>
+    
+    <div class="mt-12 text-center text-white/60 text-sm">
+      <p>Planta de fabricación: Huachipa, Lima - Perú.</p>
     </div>
   </div>
+</section>
 
-  <section class="max-w-7xl mx-auto px-4 py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
-      
-      <div class="space-y-8">
-        <div class="bg-white p-8 rounded-4xl shadow-lg border border-brand-green/10">
-          <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-4">Sede Principal</h3>
-          <p class="text-brand-earth mb-6 font-medium">
-            <span class="font-bold text-brand-green">Planta de Producción:</span><br>
-            Huachipa, Lima - Perú.
-          </p>
-          <div class="flex flex-col gap-4">
-            <a href="https://wa.me/51941234592" class="flex items-center gap-4 text-brand-dark font-bold hover:text-brand-sun transition-colors">
-              <span class="text-2xl">📱</span> +51 941 234 592
-            </a>
-            <a href="mailto:agronegociosluyasaperu.sac@gmail.com" class="flex items-center gap-4 text-brand-dark font-bold hover:text-brand-sun transition-colors">
-              <span class="text-2xl">✉️</span> agronegociosluyasaperu.sac@gmail.com
-            </a>
-          </div>
-        </div>
+<script>
+  // Lógica para enviar a WhatsApp
+  const form = document.getElementById('whatsapp-form') as HTMLFormElement;
 
-        <div class="rounded-4xl overflow-hidden shadow-lg border-4 border-white h-80 bg-gray-200 relative">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.668172962384!2d-76.9056!3d-11.9972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU5JzQ5LjkiUyA3NsKwNTQnMjAuMiJX!5e0!3m2!1ses!2spe!4v1620000000000!5m2!1ses!2spe" 
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-          </iframe>
-        </div>
-      </div>
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // Evita que la página se recargue
 
-      <div>
-        <ContactForm />
-      </div>
-    </div>
-  </section>
+      // 1. Capturar datos
+      const nombre = (document.getElementById('nombre') as HTMLInputElement).value;
+      const telefono = (document.getElementById('telefono') as HTMLInputElement).value;
+      const ciudad = (document.getElementById('ciudad') as HTMLInputElement).value;
+      const cultivo = (document.getElementById('cultivo') as HTMLSelectElement).value;
+      const mensaje = (document.getElementById('mensaje') as HTMLTextAreaElement).value;
 
-</Layout>
+      // 2. Número de Luyasa (Formato internacional sin +)
+      const numeroLuyasa = "51941234592"; 
+
+      // 3. Crear el mensaje
+      const texto = `Hola Agronegocios Luyasa! 🌱%0A%0A*Soy:* ${nombre}%0A*Desde:* ${ciudad}%0A*Cultivo:* ${cultivo}%0A*Teléfono:* ${telefono}%0A%0A*Consulta:* ${mensaje}`;
+
+      // 4. Abrir WhatsApp
+      window.open(`https://wa.me/${numeroLuyasa}?text=${texto}`, '_blank');
+    });
+  }
+</script>
