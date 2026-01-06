@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/ui/Navbar.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content'; // <--- Importante
+
+// Definimos que las props de esta página son un Producto
+interface Props {
+  producto: CollectionEntry<'productos'>;
+}
+
+export async function getStaticPaths() {
+  const productos = await getCollection('productos');
+  return productos.map((producto) => ({
+    params: { slug: producto.slug },
+    props: { producto },
+  }));
+}
+
+const { producto } = Astro.props;
+const { nombre, peso, npk, cultivos, pdfUrl, resumen, materiaOrganica } = producto.data;
+
+// Renderizar contenido markdown si lo hubiera
+const { Content } = await producto.render(); 
+---

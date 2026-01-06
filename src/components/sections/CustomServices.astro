@@ -1,0 +1,46 @@
+---
+const crops = ["Café", "Cacao", "Palta", "Piña", "Papa", "Hortalizas"];
+---
+
+<section id="servicios" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="text-brand-sun font-black uppercase tracking-widest text-sm mb-4">Ingeniería Agrícola</h2>
+        <h3 class="text-4xl md:text-5xl font-black text-brand-dark uppercase italic leading-tight mb-6">
+          Abonos a Medida <br/><span class="text-brand-green not-italic font-bold">Según tu Cultivo (NPK)</span>
+        </h3>
+        <p class="text-brand-earth mb-8 text-lg font-medium">
+          Personalizamos la fórmula con los niveles exactos de Nitrógeno, Fósforo y Potasio que tu suelo requiere para una producción récord.
+        </p>
+        
+        <div class="flex flex-wrap gap-3 mb-10">
+          {crops.map(crop => (
+            <span class="bg-brand-light border-2 border-brand-green/20 text-brand-dark px-4 py-2 rounded-xl text-sm font-black uppercase italic">
+              {crop}
+            </span>
+          ))}
+        </div>
+
+        <a href="#contacto" class="inline-block bg-brand-dark text-white px-10 py-4 rounded-2xl font-black text-lg hover:bg-brand-sun transition-all shadow-xl shadow-brand-dark/20">
+          SOLICITAR ANÁLISIS DE MEZCLA
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4">
+        <div class="bg-brand-light p-8 rounded-4xl border-2 border-brand-green/10 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-brand-green/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform"></div>
+          <span class="text-4xl mb-4 block">🧪</span>
+          <h4 class="text-xl font-black text-brand-dark uppercase italic mb-2">1. Evaluación</h4>
+          <p class="text-brand-earth text-sm font-medium">Analizamos las necesidades específicas de NPK y microelementos de tu terreno.</p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-4xl border-2 border-brand-sun/20 shadow-xl shadow-brand-sun/5 relative overflow-hidden">
+          <span class="text-4xl mb-4 block">⚗️</span>
+          <h4 class="text-xl font-black text-brand-dark uppercase italic mb-2">2. Formulación</h4>
+          <p class="text-brand-earth text-sm font-medium">Creamos una mezcla balanceada (ej. 9-10-3) para maximizar tu cosecha.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

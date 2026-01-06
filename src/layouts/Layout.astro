@@ -1,22 +1,36 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/ui/Navbar.astro';
+import Footer from '../components/ui/Footer.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { 
+  title, 
+  description = "Agronegocios Luyasa Perú SAC - Líderes en fertilizantes y abonos personalizados." 
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title} | Agronegocios Luyasa</title>
+		<meta name="description" content={description} />
 	</head>
-	<body>
-		<slot />
+	<body class="bg-brand-light text-brand-dark font-sans flex flex-col min-h-screen">
+		<Navbar />
+		
+		<main class="grow">
+			<slot />
+		</main>
+
+		<Footer />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

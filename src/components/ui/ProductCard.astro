@@ -1,0 +1,42 @@
+---
+const { producto } = Astro.props;
+const { nombre, peso, cultivos, npk, resumen, imagen } = producto.data;
+---
+
+<div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-brand-green/10 flex flex-col h-full hover:shadow-xl transition-shadow">
+  <div class="h-52 bg-gray-200 relative">
+    <div class="absolute inset-0 flex items-center justify-center text-brand-earth font-bold uppercase tracking-wider">
+      {nombre}
+    </div>
+  </div>
+  
+<div class="p-6 flex flex-col grow">
+    <div class="flex justify-between items-start mb-2">
+      <h3 class="text-xl font-bold text-brand-dark leading-tight">{nombre}</h3>
+      <span class="bg-brand-green/10 text-brand-green text-xs font-bold px-2 py-1 rounded">{peso}</span>
+    </div>
+    
+    <p class="text-gray-600 text-sm mb-4 line-clamp-2">{resumen}</p>
+    
+    <div class="grid grid-cols-3 gap-2 mb-4">
+      <div class="bg-brand-light p-2 rounded text-center">
+        <span class="block text-[10px] uppercase font-bold text-brand-earth">Nitrógeno</span>
+        <span class="text-sm font-bold text-brand-primary">{npk.n}</span>
+      </div>
+      <div class="bg-brand-light p-2 rounded text-center">
+        <span class="block text-[10px] uppercase font-bold text-brand-earth">Fósforo</span>
+        <span class="text-sm font-bold text-brand-primary">{npk.p}</span>
+      </div>
+      <div class="bg-brand-light p-2 rounded text-center">
+        <span class="block text-[10px] uppercase font-bold text-brand-earth">Potasio</span>
+        <span class="text-sm font-bold text-brand-primary">{npk.k}</span>
+      </div>
+    </div>
+
+    <div class="mt-auto">
+      <a href={`/productos/${producto.slug}`} class="block text-center bg-brand-primary text-white font-bold py-2 rounded-lg hover:bg-brand-dark transition-colors">
+        Ver Detalles
+      </a>
+    </div>
+  </div>
+</div>

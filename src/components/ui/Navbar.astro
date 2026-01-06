@@ -1,0 +1,44 @@
+---
+// Definimos las rutas reales del sitio
+const navLinks = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Nosotros', href: '/nosotros' },
+  { name: 'Productos', href: '/productos' },
+  { name: 'Contacto', href: '/contacto' }, // <--- Importante: Debe ser /contacto
+];
+---
+
+<nav class="bg-white border-b border-brand-green/10 sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-20">
+      
+      <a href="/" class="flex items-center">
+        <div class="shrink-0 flex items-center gap-2">
+          <div class="w-12 h-12 bg-brand-green rounded-full flex items-center justify-center text-white font-bold">L</div>
+          <span class="font-black text-brand-dark text-xl leading-none uppercase italic">
+            Luyasa<br/><span class="text-xs tracking-widest not-italic font-medium text-brand-earth">Perú SAC</span>
+          </span>
+        </div>
+      </a>
+      
+      <div class="hidden md:flex items-center space-x-8">
+        {navLinks.map(link => (
+          <a href={link.href} class="text-sm font-bold text-brand-dark hover:text-brand-green transition-colors uppercase tracking-wider">
+            {link.name}
+          </a>
+        ))}
+        <a href="/contacto" class="bg-brand-sun text-white px-6 py-2 rounded-full font-bold text-sm hover:shadow-lg hover:scale-105 transition-all">
+          COTIZAR AHORA
+        </a>
+      </div>
+
+      <div class="md:hidden flex items-center">
+        <button class="text-brand-dark p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
