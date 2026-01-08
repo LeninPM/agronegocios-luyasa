@@ -1,28 +1,50 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { ArrowRight } from 'lucide-astro';
+
 interface Props {
   producto: CollectionEntry<'productos'>;
 }
+
 const { producto } = Astro.props;
 ---
 
-<div class="group bg-white rounded-4xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-brand-green/10 flex flex-col h-full">
+<div class="group relative bg-white rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl hover:shadow-brand-green/10 transition-all duration-300 flex flex-col h-full">
+  
   <div class="relative h-64 overflow-hidden">
-    <img src={producto.data.imagen} alt={producto.data.nombre} class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
-    <span class="absolute top-4 right-4 bg-brand-sun text-white text-xs font-bold px-3 py-1 rounded-full uppercase z-20">{producto.data.categoria}</span>
+    <div class="absolute inset-0 bg-gray-200 animate-pulse group-hover:hidden"></div>
+    <img 
+      src={producto.data.imagen} 
+      alt={producto.data.nombre} 
+      class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+      loading="lazy"
+    />
+    
+    <div class="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-60"></div>
+    
+    {producto.data.destacado && (
+      <span class="absolute top-4 right-4 bg-brand-sun text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
+        Top Ventas
+      </span>
+    )}
   </div>
 
-<div class="p-6 flex flex-col grow justify-between">
+  <div class="p-6 flex flex-col grow justify-between">
     <div>
-      <h3 class="text-2xl font-black text-brand-dark uppercase italic leading-none mb-4 group-hover:text-brand-green transition-colors">{producto.data.nombre}</h3>
-      <p class="text-brand-earth mb-6 text-sm font-medium leading-relaxed line-clamp-2">{producto.data.resumen}</p>
+      <h3 class="text-2xl font-black text-brand-dark uppercase italic leading-none mb-4 group-hover:text-brand-green transition-colors">
+        {producto.data.nombre}
+      </h3>
+      <p class="text-brand-earth mb-6 text-sm font-medium leading-relaxed line-clamp-2">
+        {producto.data.resumen}
+      </p>
     </div>
     
     <a 
       href={`/productos/${producto.slug}`} 
-      class="block w-full text-center bg-black text-white font-black py-4 rounded-xl hover:bg-brand-sun transition-colors uppercase text-sm shadow-md"
+      class="flex items-center justify-center gap-2 w-full bg-black text-white font-black py-4 rounded-xl hover:bg-brand-sun transition-colors uppercase text-sm shadow-md group/btn"
     >
-      Ver Detalles y Cotizar
+      Ver Detalles
+      <ArrowRight class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
     </a>
   </div>
 </div>
