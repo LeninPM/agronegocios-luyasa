@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  bgImage?: string; 
+}
+
+const { 
+  title, 
+  subtitle = "Agronegocios Luyasa Perú SAC", 
+  bgImage = "/images/hero-agronegocios.webp" 
+} = Astro.props;
+---
+
+<header class="relative h-[50vh] min-h-100 flex items-center justify-center overflow-hidden">
+  
+  <div class="absolute inset-0 z-0">
+    <img 
+      src={bgImage} 
+      alt={title} 
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-brand-dark/70"></div>
+  </div>
+
+  <div class="relative z-10 text-center px-4 mt-20">
+    <span class="block text-brand-sun font-bold uppercase tracking-[0.3em] text-sm mb-4 animate-fadeIn">
+      {subtitle}
+    </span>
+    <h1 class="text-5xl md:text-6xl font-black text-white uppercase italic drop-shadow-2xl">
+      {title}
+    </h1>
+    <div class="w-24 h-1 bg-brand-green mx-auto mt-6 rounded-full"></div>
+  </div>
+</header>

@@ -1,24 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/ui/PageHeader.astro'; // <--- Importamos
 import ContactForm from '../components/sections/Contact.astro';
 ---
 
 <Layout title="Contáctanos | Agronegocios Luyasa">
-  
-  <div class="bg-brand-light py-16 border-b border-brand-green/10">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <h1 class="text-5xl font-black text-brand-dark uppercase italic mb-4">Ubicación y Contacto</h1>
-      <p class="text-brand-earth text-lg max-w-2xl mx-auto">
-        Visita nuestra planta en Huachipa o coordina tus envíos a nivel nacional.
-      </p>
-    </div>
-  </div>
+  <PageHeader title="Ubicación y Contacto" subtitle="Estamos para Atenderte" />
 
-  <section class="max-w-7xl mx-auto px-4 py-12">
+  <section class="max-w-7xl mx-auto px-4 py-12 bg-white">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
       
       <div class="space-y-8">
-        <div class="bg-white p-8 rounded-4xl shadow-lg border border-brand-green/10">
+        <div class="bg-brand-light p-8 rounded-4xl shadow-lg border border-brand-green/10">
           <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-4">Sede Principal</h3>
           <p class="text-brand-earth mb-6 font-medium">
             <span class="font-bold text-brand-green">Planta de Producción:</span><br>
@@ -36,7 +29,7 @@ import ContactForm from '../components/sections/Contact.astro';
 
         <div class="rounded-4xl overflow-hidden shadow-lg border-4 border-white h-80 bg-gray-200 relative">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.502967272844!2d-76.883333!3d-12.008333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAwJzMwLjAiUyA3NsKwNTMnMDAuMCJX!5e0!3m2!1ses!2spe!4v1620000000000!5m2!1ses!2spe" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.665917820063!2d-76.9535386!3d-11.9976369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU5JzUxLjUiUyA3NsKwNTcnMTIuNyJX!5e0!3m2!1ses!2spe!4v1635000000000!5m2!1ses!2spe" 
             width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
           </iframe>
         </div>
@@ -47,5 +40,4 @@ import ContactForm from '../components/sections/Contact.astro';
       </div>
     </div>
   </section>
-
 </Layout>

@@ -1,40 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/ui/PageHeader.astro'; // <--- Importamos
 import ProductCard from '../components/ui/ProductCard.astro';
 import { getCollection } from 'astro:content';
 
-// Obtenemos todos los productos ordenados
 const productos = await getCollection('productos');
 ---
 
 <Layout title="Catálogo de Abonos | Agronegocios Luyasa">
-  
-  <div class="bg-brand-dark text-white py-20 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl -translate-y-1/2"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 relative z-10 text-center">
-      <span class="text-brand-sun font-bold uppercase tracking-widest text-sm mb-2 block">Venta Mayorista y Minorista</span>
-      <h1 class="text-5xl md:text-6xl font-black uppercase italic mb-6">Nuestros Productos</h1>
-      <p class="text-brand-light/80 text-lg max-w-2xl mx-auto">
-        Descubre nuestra línea completa de guanos fortificados y abonos orgánicos diseñados para potenciar el rendimiento de cada cultivo.
-      </p>
-    </div>
-  </div>
+  <PageHeader title="Nuestros Productos" subtitle="Venta Mayorista y Minorista" />
 
-  <section class="max-w-7xl mx-auto px-4 py-16">
-    <div class="flex flex-wrap gap-4 justify-center mb-12">
-      <button class="px-6 py-2 rounded-full bg-brand-green text-white font-bold text-sm hover:scale-105 transition-transform">Todos</button>
-      <button class="px-6 py-2 rounded-full bg-brand-light text-brand-dark font-bold text-sm hover:bg-brand-green/20 transition-colors">Abonos Orgánicos</button>
-      <button class="px-6 py-2 rounded-full bg-brand-light text-brand-dark font-bold text-sm hover:bg-brand-green/20 transition-colors">Mezclas NPK</button>
-    </div>
-
+  <section class="max-w-7xl mx-auto px-4 py-16 bg-brand-light">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {productos.map(prod => (
         <ProductCard producto={prod} />
       ))}
     </div>
-
-    <div class="mt-20 bg-brand-earth/10 rounded-4xl p-12 text-center border border-brand-earth/20">
+    
+    <div class="mt-20 bg-white rounded-4xl p-12 text-center border border-brand-earth/10 shadow-lg">
       <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-4">¿Necesitas una formulación especial?</h3>
       <p class="text-brand-earth mb-8 max-w-xl mx-auto">
         Recuerda que también elaboramos mezclas a medida según el análisis de suelo de tu fundo.
