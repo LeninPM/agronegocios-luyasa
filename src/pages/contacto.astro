@@ -1,43 +1,148 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageHeader from '../components/ui/PageHeader.astro'; // <--- Importamos
-import ContactForm from '../components/sections/Contact.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+// Importamos los iconos profesionales
+import { Phone, MapPin, Mail, Clock, Send, Facebook, Instagram } from 'lucide-astro';
 ---
 
-<Layout title="Contáctanos | Agronegocios Luyasa">
-  <PageHeader title="Ubicación y Contacto" subtitle="Estamos para Atenderte" />
+<Layout title="Contacto | Agronegocios Luyasa Perú SAC">
+  
+  <PageHeader 
+    title="Contáctanos" 
+    subtitle="Estamos listos para atenderte"
+    bgImage="https://images.unsplash.com/photo-1592982537447-6f2a6a0c7c18?q=80&w=2940&auto=format&fit=crop"
+  />
 
-  <section class="max-w-7xl mx-auto px-4 py-12 bg-white">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
-      
-      <div class="space-y-8">
-        <div class="bg-brand-light p-8 rounded-4xl shadow-lg border border-brand-green/10">
-          <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-4">Sede Principal</h3>
-          <p class="text-brand-earth mb-6 font-medium">
-            <span class="font-bold text-brand-green">Planta de Producción:</span><br>
-            Huachipa, Lima - Perú.
-          </p>
-          <div class="flex flex-col gap-4">
-            <a href="https://wa.me/51941234592" target="_blank" class="flex items-center gap-4 text-brand-dark font-bold hover:text-brand-sun transition-colors">
-              <span class="text-2xl">📱</span> +51 941 234 592
-            </a>
-            <a href="mailto:agronegociosluyasaperu.sac@gmail.com" class="flex items-center gap-4 text-brand-dark font-bold hover:text-brand-sun transition-colors">
-              <span class="text-2xl">✉️</span> agronegociosluyasaperu.sac@gmail.com
-            </a>
+  <section class="py-20 bg-white relative overflow-hidden">
+    
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none z-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%234B3621\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        
+        <div>
+          <h2 class="text-4xl font-black text-brand-dark uppercase italic mb-8">Información Directa</h2>
+          
+          <div class="space-y-8">
+            <div class="flex items-start gap-6 group">
+              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                <MapPin class="w-8 h-8" />
+              </div>
+              <div>
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Planta Principal</h3>
+                <p class="text-brand-earth font-medium">Av. La Capitana, Huachipa, Lima</p>
+                <p class="text-sm text-gray-500 mt-1">Atención previa coordinación</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-6 group">
+              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                <Phone class="w-8 h-8" />
+              </div>
+              <div>
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Ventas y Asesoría</h3>
+                <p class="text-brand-earth font-medium">+51 941 234 592</p>
+                <p class="text-sm text-gray-500 mt-1">Atención a todo el Perú y Bolivia</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-6 group">
+              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                <Clock class="w-8 h-8" />
+              </div>
+              <div>
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Horario de Atención</h3>
+                <p class="text-brand-earth font-medium">Lunes a Sábado: 8:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+
+             <div class="flex items-start gap-6 group">
+              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+                <Mail class="w-8 h-8" />
+              </div>
+              <div>
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Correo Electrónico</h3>
+                <p class="text-brand-earth font-medium break-all">agronegociosluyasaperu.sac@gmail.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12">
+            <h4 class="font-bold text-brand-dark uppercase tracking-widest text-sm mb-4">Síguenos en redes</h4>
+            <div class="flex gap-4">
+              <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                <Facebook class="w-6 h-6" />
+              </a>
+              <a href="#" class="p-3 bg-gray-100 rounded-full hover:bg-pink-600 hover:text-white transition-colors">
+                <Instagram class="w-6 h-6" />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="rounded-4xl overflow-hidden shadow-lg border-4 border-white h-80 bg-gray-200 relative">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.665917820063!2d-76.9535386!3d-11.9976369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU5JzUxLjUiUyA3NsKwNTcnMTIuNyJX!5e0!3m2!1ses!2spe!4v1635000000000!5m2!1ses!2spe" 
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-          </iframe>
-        </div>
-      </div>
+        <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl border border-gray-100">
+          <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-2">Déjanos un mensaje</h3>
+          <p class="text-gray-500 mb-8">Te responderemos a la brevedad posible.</p>
 
-      <div>
-        <ContactForm />
+          <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+            
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label for="nombre" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-sun transition-colors" placeholder="Juan Pérez">
+              </div>
+              <div class="space-y-2">
+                <label for="telefono" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Celular / WhatsApp</label>
+                <input type="tel" id="telefono" name="telefono" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-sun transition-colors" placeholder="999 000 000">
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="cultivo" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Cultivo de interés</label>
+              <select id="cultivo" name="cultivo" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-sun transition-colors appearance-none">
+                <option value="" disabled selected>Selecciona una opción...</option>
+                <option value="Palto">Palto</option>
+                <option value="Cafe">Café</option>
+                <option value="Cacao">Cacao</option>
+                <option value="Piña">Piña</option>
+                <option value="Papa">Papa</option>
+                <option value="Hortalizas">Hortalizas</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="mensaje" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="4" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-sun transition-colors" placeholder="Hola, quisiera cotizar 50 sacos de..."></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-brand-dark text-white font-black py-4 rounded-xl hover:bg-brand-sun transition-colors uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg">
+              Enviar Solicitud
+              <Send class="w-5 h-5" />
+            </button>
+
+            <p class="text-xs text-center text-gray-400 mt-4">
+              Al enviar, aceptas ser contactado por nuestro equipo comercial.
+            </p>
+          </form>
+        </div>
+
       </div>
     </div>
   </section>
+
+  <section class="h-96 w-full bg-gray-200 relative">
+     <iframe 
+       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.665319985223!2d-76.9248!3d-12.00!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAwJzAwLjAiUyA3NsKwNTUnMjkuMyJX!5e0!3m2!1ses-419!2spe!4v1620000000000!5m2!1ses-419!2spe" 
+       width="100%" 
+       height="100%" 
+       style="border:0;" 
+       allowfullscreen="" 
+       loading="lazy" 
+       class="absolute inset-0 grayscale hover:grayscale-0 transition-all duration-500"
+     ></iframe>
+  </section>
+
 </Layout>

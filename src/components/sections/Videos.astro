@@ -1,0 +1,76 @@
+<section id="videos-section" class="py-20 bg-gray-50 border-t border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 text-center mb-12">
+    <h2 class="text-4xl font-black text-brand-dark uppercase italic mb-4">
+      Resultados en Campo
+    </h2>
+    <p class="text-gray-600 text-lg max-w-2xl mx-auto font-medium">
+      Mira cómo nuestros clientes transforman sus cultivos. Síguenos en TikTok para ver más evidencia real.
+    </p>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex justify-center p-2">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agronegocios.luya/video/7575227873804422417" data-video-id="7575227873804422417" style="max-width: 605px;min-width: 325px;" > 
+        <section> 
+          <a target="_blank" title="@agronegocios.luya" href="https://www.tiktok.com/@agronegocios.luya?refer=embed">@agronegocios.luya</a> 
+          <p>¿Buscas abonos orgánicos de calidad para mejorar tus cultivos? 🌱 En Agronegocios Luyasa Perú S.A.C...</p> 
+          <a target="_blank" title="♬ sonido original - Agronegocios Luyasa Perú" href="https://www.tiktok.com/music/sonido-original-7575228276965903122?refer=embed">♬ sonido original - Agronegocios Luyasa Perú</a> 
+        </section> 
+      </blockquote> 
+    </div>
+
+    <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex justify-center p-2">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agronegocios.luya/video/7575227873804422417" data-video-id="7575227873804422417" style="max-width: 605px;min-width: 325px;" > 
+         <section> 
+            <p class="text-center p-4">Cargando video...</p>
+         </section>
+      </blockquote> 
+    </div>
+
+     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex justify-center p-2">
+      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agronegocios.luya/video/7575227873804422417" data-video-id="7575227873804422417" style="max-width: 605px;min-width: 325px;" > 
+         <section> 
+            <p class="text-center p-4">Cargando video...</p>
+         </section>
+      </blockquote> 
+    </div>
+
+  </div>
+
+  <div class="text-center mt-12">
+    <a href="https://www.tiktok.com/@agronegocios.luya" target="_blank" class="inline-flex items-center gap-3 bg-black text-white px-8 py-4 rounded-full font-black hover:bg-brand-sun transition-all transform hover:-translate-y-1 shadow-xl">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16"><path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/></svg>
+      Ver más videos en TikTok
+    </a>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 1. Buscamos la sección de videos
+    const videosSection = document.getElementById('videos-section');
+    
+    // 2. Creamos un "Observador" que detecta cuando llegamos a esa sección
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 3. SOLO cuando se ve la sección, cargamos el script de TikTok
+          console.log("Cargando videos de TikTok...");
+          
+          const script = document.createElement('script');
+          script.src = "https://www.tiktok.com/embed.js";
+          script.async = true;
+          document.body.appendChild(script);
+          
+          // 4. Dejamos de observar para no cargarlo dos veces
+          observer.disconnect();
+        }
+      });
+    }, { rootMargin: "200px" }); // Empieza a cargar 200px antes de llegar
+
+    if (videosSection) {
+      observer.observe(videosSection);
+    }
+  });
+</script>

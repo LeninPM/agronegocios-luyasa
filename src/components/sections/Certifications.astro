@@ -1,28 +1,59 @@
-<section id="certificaciones" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 border-y border-brand-green/20 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <h2 class="text-brand-green font-bold text-sm uppercase tracking-[0.3em] mb-4">Garantía y Respaldo</h2>
-        <h3 class="text-3xl font-black text-brand-dark uppercase italic leading-tight mb-6">
-          Calidad Certificada por Laboratorios de Prestigio
-        </h3>
-        <p class="text-brand-earth mb-6">
-          Nuestros productos pasan por rigurosos análisis de materia orgánica para garantizar los niveles de NPK prometidos. Trabajamos con el respaldo de:
-        </p>
-        <ul class="space-y-4 font-bold text-brand-dark">
-          <li class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-brand-sun rounded-full"></div>
-            Análisis de Suelos, Plantas y Fertilizantes - UNALM.
-          </li>
-          <li class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-brand-sun rounded-full"></div>
-            Composición 100% Orgánica Certificada.
-          </li>
-        </ul>
+---
+import { Medal, Leaf, FileCheck } from 'lucide-astro';
+
+const certificaciones = [
+  {
+    titulo: "Análisis UNALM",
+    descripcion: "Garantía de composición NPK respaldada por laboratorios de la Universidad Nacional Agraria La Molina.",
+    // Pasamos el componente del icono directamente
+    Icono: Medal
+  },
+  {
+    titulo: "Abono 100% Orgánico",
+    descripcion: "Procesado natural ideal para café, cacao y palta, cumpliendo estándares de calidad.",
+    Icono: Leaf
+  },
+  {
+    titulo: "Registro SENASA",
+    descripcion: "Productos que cumplen con la normativa vigente para su libre comercialización en Perú y Bolivia.",
+    Icono: FileCheck
+  }
+];
+---
+
+<section id="certificaciones" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <span class="text-brand-green font-bold uppercase tracking-widest text-sm mb-4 block">Respaldo y Confianza</span>
+    <h2 class="text-5xl font-black text-brand-dark uppercase italic mb-12">Calidad <span class="text-brand-sun">Garantizada</span></h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {certificaciones.map(cert => (
+        <div class="group p-8 rounded-4xl border border-brand-green/10 bg-gray-50 hover:bg-white hover:shadow-xl transition-all duration-300">
+          <div class="flex justify-center mb-6">
+            <cert.Icono class="w-16 h-16 text-brand-green group-hover:text-brand-sun transition-colors stroke-[1.5]" />
+          </div>
+          <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-4 group-hover:text-brand-green transition-colors">{cert.titulo}</h3>
+          <p class="text-gray-600 font-medium leading-relaxed">
+            {cert.descripcion} 
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 p-10 bg-brand-sun rounded-4xl text-white shadow-xl shadow-brand-sun/20 transform hover:-translate-y-1 transition-transform relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-4 -mr-4 opacity-10">
+        <Medal class="w-48 h-48" />
       </div>
-      <div class="flex flex-wrap justify-center gap-12 opacity-70 grayscale hover:grayscale-0 transition-all">
-        <div class="text-center font-black text-2xl text-brand-dark">UNALM<br/><span class="text-xs">LABORATORIO LASPAF</span></div>
-        <div class="text-center font-black text-2xl text-brand-dark">REGISTRO<br/><span class="text-xs">OFICIAL SENASA</span></div>
+      
+      <div class="relative z-10">
+        <p class="text-2xl italic font-medium mb-6 leading-relaxed">
+          "Nuestro compromiso es entregar un producto que devuelva la fertilidad al suelo, asegurando la inversión del agricultor."
+        </p>
+        <div class="flex items-center justify-center gap-3 opacity-90">
+          <div class="h-px w-8 bg-white"></div>
+          <span class="font-black uppercase tracking-widest text-sm text-brand-dark">Samy López Carbajal — Representante Legal</span>
+          <div class="h-px w-8 bg-white"></div>
+        </div>
       </div>
     </div>
   </div>

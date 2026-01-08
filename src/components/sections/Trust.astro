@@ -1,0 +1,36 @@
+---
+// Importamos los iconos profesionales de Lucide
+import { CalendarCheck, FlaskConical, Truck } from 'lucide-astro';
+---
+
+<section class="py-16 bg-brand-green border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/20">
+      
+      <div class="text-center group px-4 py-4">
+        <div class="flex justify-center mb-4">
+          <CalendarCheck class="w-16 h-16 text-brand-sun group-hover:scale-110 transition-transform stroke-[1.5]" />
+        </div>
+        <div class="text-4xl font-black text-white mb-2 tracking-tighter italic">+8 AÑOS</div>
+        <p class="text-white/80 font-bold uppercase text-xs tracking-[0.2em]">Experiencia en el agro</p>
+      </div>
+      
+      <div class="text-center group px-4 py-4">
+        <div class="flex justify-center mb-4">
+          <FlaskConical class="w-16 h-16 text-brand-sun group-hover:scale-110 transition-transform stroke-[1.5]" />
+        </div>
+        <div class="text-4xl font-black text-white mb-2 tracking-tighter italic">100%</div>
+        <p class="text-white/80 font-bold uppercase text-xs tracking-[0.2em]">Análisis Garantizado UNALM</p>
+      </div>
+
+      <div class="text-center group px-4 py-4">
+        <div class="flex justify-center mb-4">
+          <Truck class="w-16 h-16 text-brand-sun group-hover:scale-110 transition-transform stroke-[1.5]" />
+        </div>
+        <div class="text-4xl font-black text-white mb-2 tracking-tighter italic">NACIONAL</div>
+        <p class="text-white/80 font-bold uppercase text-xs tracking-[0.2em]">Envíos a todo el Perú</p>
+      </div>
+
+    </div>
+  </div>
+</section>

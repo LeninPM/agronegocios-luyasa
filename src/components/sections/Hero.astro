@@ -1,43 +1,63 @@
-<section class="relative min-h-[85vh] flex items-center pt-20 overflow-hidden">
+---
+const images = [
+  "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=2940&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2940&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2940&auto=format&fit=crop"
+];
+---
+
+<section class="relative h-screen min-h-150 flex items-center overflow-hidden">
   
-  <div class="absolute inset-0 z-0">
-    <img 
-      src="/images/hero-agronegocios.jpg" 
-      alt="Campo de cultivo Luyasa" 
-      class="w-full h-full object-cover"
-    />
-    <div class="absolute inset-0 bg-linear-to-r from-brand-dark/90 via-brand-dark/60 to-transparent"></div>
+  <div class="absolute inset-0 z-0" id="hero-carousel">
+    {images.map((img, index) => (
+      <img 
+        src={img} 
+        alt={`Imagen de fondo ${index + 1}`} 
+        class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+        data-index={index}
+      />
+    ))}
+    <div class="absolute inset-0 bg-black/60 z-10"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 relative z-10 w-full">
+  <div class="relative z-20 max-w-7xl mx-auto px-4 flex flex-col justify-center h-full pt-20">
     <div class="max-w-3xl">
+      <span class="block text-brand-sun font-bold uppercase tracking-[0.2em] mb-4 animate-fadeIn">
+        Nutrición Orgánica Certificada
+      </span>
       
-      <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 mb-6">
-        <span class="w-3 h-3 rounded-full bg-brand-sun animate-pulse"></span>
-        <span class="text-white text-xs font-bold uppercase tracking-widest">Tecnología Agrícola Certificada</span>
-      </div>
-
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none uppercase italic mb-6 drop-shadow-xl">
-        Nutrición <br/>
-        <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-green to-brand-light">Orgánica</span> <br/>
-        de Alto Impacto
+      <h1 class="text-5xl md:text-7xl font-black text-white uppercase italic leading-none mb-6 drop-shadow-2xl animate-slideInLeft">
+        Potencia tu Cultivo <br/>
+        <span class="text-brand-green">Desde la Raíz</span>
       </h1>
-
-      <p class="text-xl md:text-2xl text-white/90 mb-10 font-medium leading-relaxed max-w-2xl drop-shadow-md">
-        Fabricantes directos de Guano de Isla y mezclas NPK personalizadas. Llevamos la fertilidad de Huachipa a todo el Perú y Bolivia.
+      
+      <p class="text-xl text-white mb-8 max-w-xl font-medium leading-relaxed animate-fadeIn delayed drop-shadow-md">
+        Abonos orgánicos y guano de isla de alta calidad. Resultados comprobados en palto, café y cacao en todo el Perú y Bolivia.
       </p>
-
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/productos" class="bg-brand-sun text-white text-center px-8 py-4 rounded-full font-black text-lg hover:bg-white hover:text-brand-sun transition-all shadow-xl shadow-brand-sun/40 uppercase italic">
+      
+      <div class="flex flex-col sm:flex-row gap-4 animate-fadeIn delayed-more">
+        <a href="/productos" class="bg-brand-green text-white px-8 py-4 rounded-full font-black hover:bg-brand-sun transition-all shadow-lg hover:shadow-brand-green/50 uppercase tracking-wider text-center border-2 border-transparent">
           Ver Catálogo 2025
         </a>
-        <a href="/contacto" class="bg-transparent border-2 border-white text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-dark transition-all uppercase">
+        
+        <a href="/contacto" class="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-black hover:bg-white hover:text-black transition-all uppercase tracking-wider text-center">
           Contactar Asesor
         </a>
       </div>
-
     </div>
   </div>
-
-  <div class="absolute bottom-0 left-0 w-full h-16 bg-linear-to-t from-white to-transparent z-20"></div>
 </section>
+
+<script>
+  const images = document.querySelectorAll('#hero-carousel img');
+  let current = 0;
+  if (images.length > 0) {
+    setInterval(() => {
+      images[current].classList.remove('opacity-100');
+      images[current].classList.add('opacity-0');
+      current = (current + 1) % images.length;
+      images[current].classList.remove('opacity-0');
+      images[current].classList.add('opacity-100');
+    }, 5000); 
+  }
+</script>

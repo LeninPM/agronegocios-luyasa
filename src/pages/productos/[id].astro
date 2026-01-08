@@ -1,0 +1,120 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/ui/PageHeader.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const productos = await getCollection('productos');
+  return productos.map(producto => ({
+    params: { id: producto.slug },
+    props: { producto },
+  }));
+}
+
+const { producto } = Astro.props;
+const { Content } = await render(producto);
+
+// Mensaje de WhatsApp con los datos correctos
+const mensajeWsp = `Hola Luyasa, estoy interesado en el producto *${producto.data.nombre}*. Quisiera saber el precio por favor.`;
+const linkWsp = `https://wa.me/51941234592?text=${encodeURIComponent(mensajeWsp)}`;
+---
+
+<Layout title={`${producto.data.nombre} | Agronegocios Luyasa`}>
+  
+  <PageHeader 
+    title={producto.data.nombre} 
+    subtitle="Ficha Técnica del Producto"
+    bgImage={producto.data.imagen} 
+  />
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        
+        <div>
+          <div class="rounded-4xl overflow-hidden shadow-2xl border border-brand-earth/10 mb-8 group relative aspect-square">
+            <img 
+              src={producto.data.imagen} 
+              alt={producto.data.nombre} 
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 absolute inset-0"
+            />
+          </div>
+          
+          {producto.data.pdfUrl && (
+             <a 
+               href={producto.data.pdfUrl} 
+               download 
+               class="flex items-center justify-center gap-3 w-full bg-brand-dark text-white py-4 rounded-xl font-bold hover:bg-brand-green transition-colors uppercase tracking-wider"
+             >
+               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+               </svg>
+               Descargar Ficha Técnica PDF
+             </a>
+          )}
+        </div>
+
+        <div class="flex flex-col justify-center">
+          <span class="text-brand-sun font-bold uppercase tracking-widest mb-2">{producto.data.categoria}</span>
+          <h1 class="text-4xl md:text-5xl font-black text-brand-dark uppercase italic mb-6 leading-none">
+            {producto.data.nombre}
+          </h1>
+          
+          <div class="prose prose-lg text-brand-earth mb-8 leading-relaxed">
+            <p>{producto.data.resumen}</p>
+          </div>
+
+          <div class="bg-brand-light p-6 rounded-2xl border border-brand-green/20 mb-10">
+            <h3 class="text-lg font-black text-brand-dark uppercase italic mb-4">Composición Garantizada</h3>
+            <ul class="space-y-2">
+              {producto.data.npk && (
+                <li class="flex items-start gap-2">
+                  <span class="text-brand-green font-bold">✓</span>
+                  <span class="text-brand-dark/80 font-medium">
+                    Nitrógeno ({producto.data.npk.n}%) - Fósforo ({producto.data.npk.p}%) - Potasio ({producto.data.npk.k}%)
+                  </span>
+                </li>
+              )}
+              {producto.data.materiaOrganica && (
+                <li class="flex items-start gap-2">
+                  <span class="text-brand-green font-bold">✓</span>
+                  <span class="text-brand-dark/80 font-medium">Materia Orgánica: {producto.data.materiaOrganica}</span>
+                </li>
+              )}
+              <li class="flex items-start gap-2">
+                <span class="text-brand-green font-bold">✓</span>
+                <span class="text-brand-dark/80 font-medium">Presentación: {producto.data.peso}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <p class="text-sm text-brand-earth font-bold uppercase text-center md:text-left">
+              ¿Listo para potenciar tu cultivo?
+            </p>
+            <a 
+              href={linkWsp} 
+              target="_blank"
+              class="block w-full text-center bg-brand-sun text-white text-xl font-black py-5 rounded-2xl hover:bg-brand-dark transition-all shadow-xl shadow-brand-sun/20 uppercase italic transform hover:-translate-y-1"
+            >
+              Cotizar {producto.data.nombre} Ahora 🚀
+            </a>
+            <p class="text-center text-xs text-brand-dark/40 font-medium">
+              Te responderemos inmediatamente vía WhatsApp con precios por mayor y menor.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="py-16 bg-brand-light border-t border-brand-green/10">
+    <div class="max-w-4xl mx-auto px-4 prose prose-green prose-lg">
+      <h3 class="text-3xl font-black text-brand-dark uppercase italic text-center mb-8">Detalles Técnicos y Aplicación</h3>
+      <Content />
+    </div>
+  </section>
+
+</Layout>

@@ -1,40 +1,64 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageHeader from '../components/ui/PageHeader.astro'; // <--- Importamos
+import PageHeader from '../components/ui/PageHeader.astro';
+import Trust from '../components/sections/Trust.astro';
 ---
 
-<Layout title="Sobre Nosotros | Agronegocios Luyasa">
-  <PageHeader title="Nuestra Historia" subtitle="Compromiso y Calidad" />
+<Layout title="Nosotros | Agronegocios Luyasa Perú SAC">
   
-  <section class="py-24 bg-white">
+  <PageHeader 
+    title="Nuestra Historia" 
+    subtitle="Compromiso con el Agro Peruano"
+    bgImage="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=2940&auto=format&fit=crop"
+  />
+
+  <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4">
-        <div class="max-w-3xl mb-16">
-          <h2 class="text-4xl font-black text-brand-dark uppercase italic leading-none mb-6">
-            Más de <span class="text-brand-sun">8 años</span> <br/>en el Campo Peruano
-          </h2>
-          <p class="text-lg text-brand-earth font-medium italic">
-            "Nuestra misión es devolver la fertilidad al suelo y asegurar la producción agrícola a largo plazo".
-            </p>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6 text-brand-dark text-lg leading-relaxed">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        
+        <div>
+          <span class="text-brand-green font-bold uppercase tracking-widest text-sm mb-2 block">Desde 2016</span>
+          <h2 class="text-4xl font-black text-brand-dark uppercase italic mb-6">Pasión por la Fertilidad del Suelo</h2>
+          
+          <div class="prose prose-lg text-brand-earth mb-8 leading-relaxed">
             <p>
-                Fundada en **2016**, **AGRONEGOCIOS LUYASA PERÚ SAC** nació con el compromiso de brindar soluciones orgánicas reales. Bajo la dirección de **Samy López Carbajal**, hemos crecido junto a los agricultores de todo el país.
+              Agronegocios Luyasa Perú SAC nace con una misión clara: devolverle la vida a los suelos agrícolas degradados. 
+              Fundada en 2016, hemos crecido de ser un pequeño distribuidor local a convertirnos en un aliado estratégico 
+              para agricultores en todo el Perú y Bolivia.
             </p>
             <p>
-                Extraemos nuestra materia prima de las ricas islas guaneras de **Tumbes** y granjas selectas del Perú, procesando mezclas potentes de guano de isla, codorniz y gallina.
+              Nos especializamos en la recolección, procesamiento y distribución de Guano de Isla y abonos orgánicos 
+              enriquecidos. Entendemos que cada cultivo es diferente, por eso no solo vendemos productos, sino que 
+              ofrecemos soluciones nutricionales a medida.
             </p>
-            <div class="bg-brand-light p-6 rounded-3xl border-l-8 border-brand-green shadow-sm italic text-brand-earth">
-                "Somos fabricantes certificados. Cada saco de 50kg lleva el respaldo de análisis de laboratorios como la UNALM".
-            </div>
-            </div>
-            
-            <div class="relative">
-            <div class="aspect-video bg-brand-earth/20 rounded-[3rem] overflow-hidden border-4 border-white shadow-2xl flex items-center justify-center font-black text-brand-earth uppercase italic">
-                IMAGEN PLANTA
-            </div>
-            </div>
+          </div>
+
+          <div class="border-l-4 border-brand-sun pl-6 py-2 bg-gray-50 rounded-r-xl">
+            <p class="italic text-brand-dark font-medium">
+              "Liderados por Samy López Carbajal, mantenemos un estándar de calidad inquebrantable, validados por la UNALM."
+            </p>
+          </div>
         </div>
+
+        <div class="relative group">
+          <div class="absolute inset-0 bg-brand-sun/20 rounded-4xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
+          
+          <img 
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2940&auto=format&fit=crop" 
+            alt="Planta de procesamiento Huachipa" 
+            class="relative rounded-4xl shadow-2xl w-full h-125 object-cover"
+          />
+          
+          <div class="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md px-6 py-4 rounded-xl shadow-lg border-l-4 border-brand-green">
+            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Ubicación</p>
+            <p class="text-brand-dark font-black text-xl">Planta Huachipa, Lima</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
+
+  <Trust />
+
 </Layout>

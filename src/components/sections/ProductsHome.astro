@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import ProductCard from '../ui/ProductCard.astro';
+
+// Obtenemos solo 3 productos para el inicio
+const productos = (await getCollection('productos')).slice(0, 3);
+---
+
+<section class="py-24 bg-brand-light">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+      <div class="max-w-xl text-center md:text-left">
+        <h2 class="text-5xl font-black text-brand-dark uppercase italic leading-none mb-4">
+          Nuestras <span class="text-brand-green">Presentaciones</span>
+        </h2>
+        <p class="text-brand-earth font-medium">
+          Abonos orgánicos y guanos de alta concentración para potenciar el rendimiento de tus cultivos.
+        </p>
+      </div>
+      <a href="/productos" class="bg-brand-dark text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-sun transition-colors uppercase italic text-sm">
+        Ver catálogo completo
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {productos.map(prod => (
+        <ProductCard producto={prod} />
+      ))}
+    </div>
+  </div>
+</section>

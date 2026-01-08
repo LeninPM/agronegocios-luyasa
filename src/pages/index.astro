@@ -1,26 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
-import ProductCard from '../components/ui/ProductCard.astro';
-import TrustSection from '../components/sections/TrustSection.astro';
-import CustomServices from '../components/sections/CustomServices.astro';
-import { getCollection } from 'astro:content';
-
-const productos = await getCollection('productos');
+import Trust from '../components/sections/Trust.astro';
+import ProductsHome from '../components/sections/ProductsHome.astro';
+import Certifications from '../components/sections/Certifications.astro';
+import Videos from '../components/sections/Videos.astro';
 ---
 
-<Layout title="Expertos en Nutrición Vegetal">
+<Layout title="AGRONEGOCIOS LUYASA PERÚ SAC | Abonos Orgánicos">
   <Hero />
+  <Trust />
   
-  <section id="productos" class="max-w-7xl mx-auto px-4 py-24">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {productos.map(prod => (
-        <ProductCard producto={prod} />
-      ))}
+  <section class="py-20 bg-gray-100 text-center border-y border-gray-200">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="text-4xl font-black uppercase italic mb-6 text-brand-dark">
+        Abonos Personalizados por Cultivo
+      </h2>
+      
+      <p class="text-lg mb-10 text-gray-800 font-medium leading-relaxed">
+        Diseñamos mezclas NPK y microelementos específicas para 
+        <span class="font-bold text-brand-green">café, cacao, palta, piña, papa y hortalizas</span>. 
+        Aumenta tu rendimiento con fórmulas a medida.
+      </p>
+      
+      <a href="/contacto" class="inline-block bg-brand-sun text-white px-10 py-4 rounded-full font-black text-lg shadow-xl shadow-brand-sun/20 hover:bg-brand-dark hover:text-white transition-all transform hover:-translate-y-1 uppercase italic tracking-wider">
+        Solicitar Mezcla Especial
+      </a>
     </div>
   </section>
 
-  <TrustSection />
-  <CustomServices />
-
+  <ProductsHome />
+  <Certifications />
+  <Videos />
 </Layout>
