@@ -1,11 +1,11 @@
 ---
 nombre: "Cosecha Verde"
 resumen: "Fórmula especializada para cultivos tropicales (Cacao, Café, Palto) y palmeras."
-imagen: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600&auto=format&fit=crop"
+imagen: "/images/cosecha-verde.jpeg"
 destacado: true
 
 # DATOS TÉCNICOS
-ficha_tecnica: "/docs/ficha-tecnica-cosecha-verde.pdf"
+ficha_tecnica: "/docs/FICHA_TECNICA_COSECHA_VERDE.pdf"
 composicion:
   - "Nitrógeno (N): 5%"
   - "Fósforo (P2O5): 10%"

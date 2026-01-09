@@ -8,7 +8,8 @@ interface Props {
 const { 
   title, 
   subtitle = "Agronegocios Luyasa Perú SAC", 
-  bgImage = "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=2940&auto=format&fit=crop" 
+  // OPTIMIZACIÓN CRÍTICA: Cambié w=2940 por w=1600 para velocidad
+  bgImage = "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1600&auto=format&fit=crop" 
 } = Astro.props;
 ---
 
@@ -19,6 +20,7 @@ const {
       src={bgImage} 
       alt={title} 
       class="w-full h-full object-cover"
+      loading="eager"
     />
     <div class="absolute inset-0 bg-brand-dark/70"></div>
   </div>

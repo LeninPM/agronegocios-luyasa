@@ -1,36 +1,69 @@
 ---
-// Importamos los iconos profesionales de Lucide
-import { CalendarCheck, FlaskConical, Truck } from 'lucide-astro';
+import { Leaf, Award, Truck, Pickaxe } from 'lucide-astro'; // Importamos iconos nuevos
 ---
 
-<section class="py-16 bg-brand-green border-b border-white/10">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 divide-y md:divide-y-0 md:divide-x divide-white/20">
+<section class="py-20 bg-brand-green text-white relative overflow-hidden">
+  
+  <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <h2 class="text-4xl font-black uppercase italic mb-6">Del Origen al Campo</h2>
+      <p class="text-xl font-medium text-white/90 leading-relaxed">
+        "En Agronegocios Luyasa, trabajamos con un profundo compromiso hacia el campo. Todo tiene su origen en las Islas Guaneras, entre el mar y las aves."
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
       
-      <div class="text-center group px-4 py-4">
-        <div class="flex justify-center mb-4">
-          <CalendarCheck class="w-16 h-16 text-brand-sun group-hover:scale-110 transition-transform stroke-[1.5]" />
+      <div class="bg-white/10 p-8 rounded-3xl border border-white/20 hover:bg-white/20 transition-colors">
+        <div class="bg-brand-sun w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-lg">
+          <Pickaxe class="w-7 h-7 text-brand-dark" />
         </div>
-        <div class="text-4xl font-black text-white mb-2 tracking-tighter italic">+8 AÑOS</div>
-        <p class="text-white/80 font-bold uppercase text-xs tracking-[0.2em]">Experiencia en el agro</p>
-      </div>
-      
-      <div class="text-center group px-4 py-4">
-        <div class="flex justify-center mb-4">
-          <FlaskConical class="w-16 h-16 text-brand-sun group-hover:scale-110 transition-transform stroke-[1.5]" />
-        </div>
-        <div class="text-4xl font-black text-white mb-2 tracking-tighter italic">100%</div>
-        <p class="text-white/80 font-bold uppercase text-xs tracking-[0.2em]">Análisis Garantizado UNALM</p>
+        <h3 class="font-black uppercase text-lg mb-3">Recolección Minuciosa</h3>
+        <p class="text-sm text-white/80 leading-relaxed">
+          Nuestro equipo realiza la recolección del guano natural, llenando cada costal uno por uno para mantener la pureza y calidad que nos caracteriza.
+        </p>
       </div>
 
-      <div class="text-center group px-4 py-4">
-        <div class="flex justify-center mb-4">
-          <Truck class="w-16 h-16 text-brand-sun group-hover:scale-110 transition-transform stroke-[1.5]" />
+      <div class="bg-white/10 p-8 rounded-3xl border border-white/20 hover:bg-white/20 transition-colors">
+        <div class="bg-brand-sun w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-lg">
+          <Truck class="w-7 h-7 text-brand-dark" />
         </div>
-        <div class="text-4xl font-black text-white mb-2 tracking-tighter italic">NACIONAL</div>
-        <p class="text-white/80 font-bold uppercase text-xs tracking-[0.2em]">Envíos a todo el Perú</p>
+        <h3 class="font-black uppercase text-lg mb-3">Logística Integral</h3>
+        <p class="text-sm text-white/80 leading-relaxed">
+          Trasladamos los costales en barco y posteriormente en tráileres hacia nuestras instalaciones, asegurando la cadena de suministro.
+        </p>
+      </div>
+
+      <div class="bg-white/10 p-8 rounded-3xl border border-white/20 hover:bg-white/20 transition-colors">
+        <div class="bg-brand-sun w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-lg">
+          <Leaf class="w-7 h-7 text-brand-dark" />
+        </div>
+        <h3 class="font-black uppercase text-lg mb-3">Fórmula Enriquecida</h3>
+        <p class="text-sm text-white/80 leading-relaxed">
+          Complementamos con <strong>Roca Fosfórica y Ceniza de Madera</strong>, además de subproductos de granjas de gallinas y codornices para elevar la fertilidad.
+        </p>
+      </div>
+
+      <div class="bg-white/10 p-8 rounded-3xl border border-white/20 hover:bg-white/20 transition-colors">
+        <div class="bg-brand-sun w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-lg">
+          <Award class="w-7 h-7 text-brand-dark" />
+        </div>
+        <h3 class="font-black uppercase text-lg mb-3">Calidad Certificada</h3>
+        <p class="text-sm text-white/80 leading-relaxed">
+          Contamos con tres productos principales elaborados con calidad y experiencia. Cada lote está respaldado por análisis de laboratorio.
+        </p>
       </div>
 
     </div>
+
+    <div class="text-center pt-8 border-t border-white/20">
+      <p class="text-3xl md:text-5xl font-black italic uppercase text-brand-sun drop-shadow-md">
+        "Lo que siembras hoy, <br class="md:hidden" /> florece mañana"
+      </p>
+    </div>
+
   </div>
 </section>

@@ -1,8 +1,10 @@
 ---
 const images = [
-  "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1600&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1600&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1600&auto=format&fit=crop"
+  // RECUERDA: Si tienes las fotos nuevas de la clienta, ponlas en public/images/
+  // y cambia estas rutas. Por ahora dejo las optimizadas de 1200px.
+  "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1200&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1200&auto=format&fit=crop", 
+  "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1200&auto=format&fit=crop"
 ];
 ---
 
@@ -15,29 +17,31 @@ const images = [
         alt={`Imagen de fondo ${index + 1}`} 
         class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
         data-index={index}
+        loading="eager" 
       />
     ))}
     <div class="absolute inset-0 bg-black/60 z-10"></div>
   </div>
 
   <div class="relative z-20 max-w-7xl mx-auto px-4 flex flex-col justify-center h-full pt-20">
-    <div class="max-w-3xl">
-      <span class="block text-brand-sun font-bold uppercase tracking-[0.2em] mb-4 animate-fadeIn">
-        Nutrición Orgánica Certificada
+    <div class="max-w-4xl"> <span class="block text-brand-sun font-bold uppercase tracking-[0.2em] mb-4 animate-fadeIn">
+        Guano de Isla • Codorniz • Gallinaza
       </span>
       
       <h1 class="text-5xl md:text-7xl font-black text-white uppercase italic leading-none mb-6 drop-shadow-2xl animate-slideInLeft">
-        Potencia tu Cultivo <br/>
-        <span class="text-brand-green">Desde la Raíz</span>
+        Riqueza NPK <br/>
+        <span class="text-brand-green">100% Orgánica</span>
       </h1>
       
-      <p class="text-xl text-white mb-8 max-w-xl font-medium leading-relaxed animate-fadeIn delayed drop-shadow-md">
-        Abonos orgánicos y guano de isla de alta calidad. Resultados comprobados en palto, café y cacao en todo el Perú y Bolivia.
+      <p class="text-xl text-white mb-8 max-w-2xl font-medium leading-relaxed animate-fadeIn delayed drop-shadow-md">
+        Potencia tu cultivo con composiciones ricas en Nitrógeno, Fósforo y Potasio. 
+        Cada producto pasa por rigurosos análisis de macro y microelementos. 
+        <span class="text-brand-sun font-bold">Incluye Certificado y Ficha Técnica.</span>
       </p>
       
       <div class="flex flex-col sm:flex-row gap-4 animate-fadeIn delayed-more">
         <a href="/productos" class="bg-brand-green text-white px-8 py-4 rounded-full font-black hover:bg-brand-sun transition-all shadow-lg hover:shadow-brand-green/50 uppercase tracking-wider text-center border-2 border-transparent">
-          Ver Catálogo 2025
+          Ver Productos
         </a>
         
         <a href="/contacto" class="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-black hover:bg-white hover:text-black transition-all uppercase tracking-wider text-center">

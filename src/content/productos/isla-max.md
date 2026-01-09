@@ -1,11 +1,11 @@
 ---
 nombre: "Isla Max"
 resumen: "El guano de isla económico y eficiente. Ideal para hortalizas y cultivos de ciclo corto."
-imagen: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=600&auto=format&fit=crop"
+imagen: "/images/isla-max.jpeg"
 destacado: false
 
 # DATOS TÉCNICOS
-ficha_tecnica: "/docs/ficha-tecnica-isla-max.pdf"
+ficha_tecnica: "/docs/FICHA_TECNICA_ISLA_MAX.pdf"
 composicion:
   - "Nitrógeno (N): 10% (Crecimiento vegetativo)"
   - "Fósforo (P2O5): 8% (Enraizamiento)"
