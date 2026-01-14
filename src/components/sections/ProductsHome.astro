@@ -6,26 +6,41 @@ import ProductCard from '../ui/ProductCard.astro';
 const productos = (await getCollection('productos')).slice(0, 3);
 ---
 
-<section class="py-24 bg-brand-light">
-  <div class="max-w-7xl mx-auto px-4">
+<section class="py-24 bg-white relative overflow-hidden">
+  
+  <div class="absolute top-0 left-0 w-full h-full opacity-30 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[16px_16px]"></div>
+
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    
     <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
       <div class="max-w-xl text-center md:text-left">
+        <span class="text-brand-green font-black tracking-widest uppercase text-sm mb-2 block">
+          Catálogo 2026
+        </span>
         <h2 class="text-5xl font-black text-brand-dark uppercase italic leading-none mb-4">
-          Nuestras <span class="text-brand-green">Presentaciones</span>
+          Nuestras <span class="text-brand-sun">Presentaciones</span>
         </h2>
-        <p class="text-brand-earth font-medium">
+        <p class="text-gray-600 font-medium text-lg leading-relaxed">
           Abonos orgánicos y guanos de alta concentración para potenciar el rendimiento de tus cultivos.
         </p>
       </div>
-      <a href="/productos" class="bg-brand-dark text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-sun transition-colors uppercase italic text-sm">
+      
+      <a href="/productos" class="hidden md:inline-flex bg-brand-dark text-white px-8 py-3 rounded-full font-bold hover:bg-brand-sun hover:text-brand-dark transition-all transform hover:-translate-y-1 uppercase italic text-sm shadow-lg">
         Ver catálogo completo
       </a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {productos.map(prod => (
+      {productos.map((prod) => (
         <ProductCard producto={prod} />
       ))}
     </div>
+
+    <div class="mt-8 text-center md:hidden">
+      <a href="/productos" class="inline-block bg-brand-dark text-white px-8 py-3 rounded-full font-bold uppercase italic text-sm shadow-lg w-full">
+        Ver catálogo completo
+      </a>
+    </div>
+
   </div>
 </section>
