@@ -1,5 +1,7 @@
 ---
-const navLinks = [
+import { Menu, X } from 'lucide-astro';
+
+const menuItems = [
   { name: 'Inicio', href: '/' },
   { name: 'Nosotros', href: '/nosotros' },
   { name: 'Productos', href: '/productos' },
@@ -7,60 +9,74 @@ const navLinks = [
 ];
 ---
 
-<nav class="absolute top-0 left-0 w-full z-50 bg-linear-to-b from-black/90 to-transparent transition-all duration-300">
+<nav class="absolute top-10 w-full z-50 transition-all duration-300 border-b border-white/10" id="main-header">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-32 items-center">
+    <div class="flex justify-between items-center h-20">
       
-      <a href="/" class="flex items-center group relative z-50">
-        <div class="shrink-0 transition-transform duration-300 group-hover:scale-105">
-          <img 
-            src="/images/logo.jpeg" 
-            alt="AGRONEGOCIOS LUYASA PERÚ SAC" 
-            class="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover shadow-2xl border-4 border-white"
-          />
-        </div>
-      </a>
-      
-      <div class="hidden md:flex items-center space-x-8">
-        {navLinks.map(link => (
-          <a href={link.href} class="text-base font-black text-white hover:text-brand-sun transition-colors uppercase tracking-widest drop-shadow-md">
-            {link.name}
+      <div class="shrink-0 flex items-center">
+        <a href="/" class="group">
+           <img 
+             src="/images/logo.png" 
+             alt="Logo Agronegocios Luyasa" 
+             class="h-16 w-auto object-contain transition-transform group-hover:scale-105"
+           />
+        </a>
+      </div>
+
+      <div class="hidden md:flex space-x-8 items-center">
+        {menuItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-white hover:text-brand-sun px-3 py-2 text-sm font-bold uppercase tracking-wider transition-colors drop-shadow-md"
+          >
+            {item.name}
           </a>
         ))}
-        <a href="/contacto" class="bg-brand-sun text-brand-dark px-8 py-3 rounded-full font-black text-sm hover:bg-white hover:text-brand-dark transition-all shadow-lg shadow-brand-sun/30 uppercase italic">
+        <a 
+          href="https://wa.me/51941234592" 
+          target="_blank"
+          class="bg-brand-sun text-brand-dark px-6 py-2 rounded-full font-black text-sm hover:bg-white transition-all uppercase shadow-lg transform hover:scale-105"
+        >
           Cotizar
         </a>
       </div>
 
-      <div class="md:hidden flex items-center relative z-50">
-        <button id="mobile-menu-btn" class="text-white p-2 hover:bg-white/10 rounded-full transition-colors">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-          </svg>
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-button" class="text-white hover:text-brand-sun transition-colors p-2">
+          <Menu class="w-8 h-8" />
         </button>
       </div>
     </div>
   </div>
 
-  <div id="mobile-menu" class="fixed inset-0 bg-brand-dark/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center space-y-8">
-    {navLinks.map(link => (
-      <a href={link.href} class="text-2xl font-black text-white hover:text-brand-sun uppercase tracking-widest">
-        {link.name}
+  <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 backdrop-blur-xl absolute top-full left-0 w-full border-t border-white/10 shadow-2xl">
+    <div class="px-4 pt-4 pb-8 space-y-2">
+      {menuItems.map((item) => (
+        <a
+          href={item.href}
+          class="block text-white hover:text-brand-sun hover:bg-white/5 px-4 py-4 rounded-xl text-base font-bold uppercase tracking-wider transition-all border-b border-white/5 last:border-0"
+        >
+          {item.name}
+        </a>
+      ))}
+      <a 
+        href="/contacto"
+        class="block w-full text-center bg-brand-sun text-brand-dark mt-6 px-4 py-4 rounded-xl text-base font-black uppercase shadow-lg"
+      >
+        Solicitar Cotización
       </a>
-    ))}
-    <a href="/contacto" class="bg-brand-sun text-white px-10 py-4 rounded-full font-black text-xl hover:bg-white hover:text-brand-dark transition-all uppercase italic">
-      Cotizar Ahora
-    </a>
+    </div>
   </div>
 </nav>
 
 <script>
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  if (btn && menu) {
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('translate-x-full');
-      document.body.style.overflow = menu.classList.contains('translate-x-full') ? 'auto' : 'hidden';
-    });
-  }
+  // Script simplificado (solo para el móvil, ya que el menú de escritorio no baja)
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let isMenuOpen = false;
+
+  mobileMenuButton?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    mobileMenu?.classList.toggle('hidden');
+  });
 </script>
