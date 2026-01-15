@@ -2,22 +2,24 @@
 import { getCollection } from 'astro:content';
 import ProductCard from '../ui/ProductCard.astro';
 
-// Obtenemos solo 3 productos para el inicio
-const productos = (await getCollection('productos')).slice(0, 3);
+const allProducts = await getCollection('productos');
+// Ordenamos y mostramos
+const productos = allProducts
+  .sort((a, b) => (a.data.orden || 99) - (b.data.orden || 99))
+  .slice(0, 3);
 ---
 
 <section class="py-24 bg-white relative overflow-hidden">
-  
-  <div class="absolute top-0 left-0 w-full h-full opacity-30 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-size-[16px_16px]"></div>
+  <div class="absolute top-0 left-0 w-full h-full opacity-30 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] bg-[size:16px_16px]"></div>
 
   <div class="max-w-7xl mx-auto px-4 relative z-10">
-    
     <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+      
       <div class="max-w-xl text-center md:text-left">
         <span class="text-brand-green font-black tracking-widest uppercase text-sm mb-2 block">
           Catálogo 2026
         </span>
-        <h2 class="text-5xl font-black text-brand-dark uppercase italic leading-none mb-4">
+        <h2 class="text-4xl md:text-5xl font-black text-brand-dark uppercase italic leading-none mb-4">
           Nuestras <span class="text-brand-sun">Presentaciones</span>
         </h2>
         <p class="text-gray-600 font-medium text-lg leading-relaxed">
@@ -25,7 +27,7 @@ const productos = (await getCollection('productos')).slice(0, 3);
         </p>
       </div>
       
-      <a href="/productos" class="hidden md:inline-flex bg-brand-dark text-white px-8 py-3 rounded-full font-bold hover:bg-brand-sun hover:text-brand-dark transition-all transform hover:-translate-y-1 uppercase italic text-sm shadow-lg">
+      <a href="/productos" class="hidden md:inline-flex bg-brand-sun text-brand-dark px-8 py-3 rounded-full font-bold hover:bg-brand-dark hover:text-white transition-all transform hover:-translate-y-1 uppercase italic text-sm shadow-lg">
         Ver catálogo completo
       </a>
     </div>
@@ -36,8 +38,8 @@ const productos = (await getCollection('productos')).slice(0, 3);
       ))}
     </div>
 
-    <div class="mt-8 text-center md:hidden">
-      <a href="/productos" class="inline-block bg-brand-dark text-white px-8 py-3 rounded-full font-bold uppercase italic text-sm shadow-lg w-full">
+    <div class="mt-10 text-center md:hidden">
+      <a href="/productos" class="inline-block bg-brand-sun text-brand-dark px-8 py-4 rounded-full font-bold uppercase italic text-sm shadow-lg w-full">
         Ver catálogo completo
       </a>
     </div>

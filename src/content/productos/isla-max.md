@@ -1,20 +1,35 @@
 ---
-nombre: "Isla Max"
-resumen: "El guano de isla económico y eficiente. Ideal para hortalizas y cultivos de ciclo corto."
-imagen: "/images/isla-max.jpeg"
+titulo: "Isla Max"
+nombre: "Isla Max - Crecimiento Vegetativo"
+descripcion: "La potencia de 3 guanos: Isla, Codorniz y Gallinaza para hortalizas."
+resumen: "Máximo desarrollo de hojas y tallos. Ideal para Lechuga, Espinaca y Hortalizas."
+imagen: "/images/isla-max.png"
+pdf: "/docs/FICHA_TECNICA_ISLA_MAX.pdf"
 destacado: false
+orden: 2
 
-# DATOS TÉCNICOS
-ficha_tecnica: "/docs/FICHA_TECNICA_ISLA_MAX.pdf"
-composicion:
-  - "Nitrógeno (N): 10% (Crecimiento vegetativo)"
-  - "Fósforo (P2O5): 8% (Enraizamiento)"
-  - "Potasio (K2O): 2% (Resistencia)"
-  - "Materia Orgánica: 50%"
-  - "Calcio (CaO): 4%"
-aplicacion: "Para hortalizas (lechuga, brócoli, apio), aplicar al momento del trasplante o 15 días después de la siembra. Incorporar al suelo húmedo para evitar volatilización. Dosis: 100g - 200g por metro lineal o planta, según análisis de suelo."
-beneficios:
-  - "Excelente relación costo-beneficio para pequeñas parcelas."
-  - "Acelera el crecimiento de hojas verdes gracias a su aporte de Nitrógeno."
-  - "Mejora la retención de agua en suelos arenosos."
+fichaTecnica:
+  presentacion: "Saco de polipropileno laminado de 50kg"
+  composicion:
+    - ingrediente: "Guano de Isla"
+    - ingrediente: "Guano de Codorniz"
+    - ingrediente: "Gallinaza Tratada"
+  
+  # DATOS TÉCNICOS (Fuente: Informe Lab PDF Pág 5)
+  analisisGarantizado:
+    nitrogeno: "3.52 %"
+    fosforo: "4.38 %"
+    potasio: "2.25 %"
+    materiaOrganica: "48.30 %" # Dato clave del análisis
+    calcio: "Presente"
+  
+  beneficios:
+    - "Excelente relación costo-beneficio para parcelas de hortalizas."
+    - "Acelera el crecimiento de hojas verdes y tallos vigorosos."
+    - "Mejora la retención de agua en suelos arenosos gracias a su alta Materia Orgánica."
+    - "Recupera suelos degradados por agricultura intensiva."
+
+  aplicacion: "Para hortalizas (lechuga, apio), aplicar al momento del trasplante o 15 días después. Incorporar al suelo húmedo. Dosis: 100g - 200g por metro lineal o planta."
+  cultivos: ["Lechuga", "Espinaca", "Acelga", "Apio", "Hortalizas"]
+  certificaciones: ["Kiwa BCS Öko-Garantie"]
 ---

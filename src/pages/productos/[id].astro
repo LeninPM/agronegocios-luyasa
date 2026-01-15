@@ -1,150 +1,123 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PageHeader from '../../components/ui/PageHeader.astro';
 import { getCollection, render } from 'astro:content';
-import { FileDown, CheckCircle, Sprout, FlaskConical, ArrowRight } from 'lucide-astro';
+import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const productos = await getCollection('productos');
-  return productos.map(producto => ({
-    params: { id: producto.slug },
-    props: { producto },
+  const products = await getCollection('productos');
+  return products.map((product) => ({
+    params: { id: product.slug },
+    props: { product },
   }));
 }
 
-const { producto } = Astro.props;
-const { Content } = await render(producto);
+const { product } = Astro.props;
+const { data } = product;
+// Extraemos 'pdf' también
+const { nombre, imagen, fichaTecnica, resumen, pdf } = data;
 ---
 
-<Layout title={`${producto.data.nombre} | Detalles Técnicos`}>
+<Layout title={`${nombre} | Agronegocios Luyasa`}>
   
-  <PageHeader 
-    title={producto.data.nombre} 
-    subtitle="Ficha Técnica y Aplicación"
-    bgImage={producto.data.imagen} 
-  />
-
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4">
+  <section class="pt-32 pb-16 bg-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
       
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        
-        <div class="space-y-8">
-          <div class="relative group rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100">
-            <img 
-              src={producto.data.imagen} 
-              alt={producto.data.nombre} 
-              class="w-full h-125 object-cover transition-transform duration-700 group-hover:scale-110"
-            />
-            <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
-            
-            <div class="absolute bottom-8 left-8 text-white">
-              <span class="bg-brand-sun px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-2 inline-block">Producto Luyasa</span>
-              <h2 class="text-3xl font-black italic uppercase">{producto.data.nombre}</h2>
-            </div>
-          </div>
+      <a href="/#productos" class="inline-flex items-center gap-2 text-gray-500 hover:text-brand-green font-bold mb-8 transition-colors uppercase text-xs tracking-widest">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        Volver al Catálogo
+      </a>
 
-          <div class="bg-gray-50 p-8 rounded-3xl border border-gray-200 text-center">
-            <h3 class="text-brand-dark font-black uppercase italic mb-4">Documentación Técnica</h3>
-            
-            {producto.data.ficha_tecnica ? (
-              <a 
-                href={producto.data.ficha_tecnica} 
-                target="_blank" 
-                class="inline-flex items-center gap-3 bg-red-600 text-white w-full justify-center py-4 rounded-xl font-bold hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/30 group"
-              >
-                <FileDown class="w-6 h-6 group-hover:animate-bounce" />
-                Descargar Ficha Técnica (PDF)
-              </a>
-            ) : (
-              <button disabled class="inline-flex items-center gap-3 bg-gray-300 text-gray-500 w-full justify-center py-4 rounded-xl font-bold cursor-not-allowed">
-                <FileDown class="w-6 h-6" />
-                PDF Disponible Próximamente
-              </button>
-            )}
-            <p class="text-xs text-gray-400 mt-3 font-medium">Formato PDF • Actualizado 2026</p>
-          </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="relative group">
+            <div class="absolute inset-0 bg-brand-green/5 rounded-full scale-90 blur-3xl"></div>
+            <img 
+              src={imagen} 
+              alt={nombre} 
+              class="relative w-full max-w-md mx-auto drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-105"
+              transition:name={`image-${product.slug}`}
+            />
         </div>
 
         <div>
-          <h2 class="text-4xl font-black text-brand-dark uppercase italic mb-6">Especificaciones</h2>
-          <p class="text-lg text-gray-600 mb-10 leading-relaxed font-medium">
-            {producto.data.resumen}
+          <h1 class="text-4xl md:text-5xl font-black text-brand-dark uppercase italic leading-none mb-6">
+            {nombre}
+          </h1>
+          
+          <p class="text-xl text-gray-600 font-medium leading-relaxed mb-8 border-l-4 border-brand-green pl-6">
+            {resumen}
           </p>
 
-          <div class="space-y-12">
-            
-            {producto.data.composicion && (
-              <div>
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="p-2 bg-brand-green/10 rounded-lg text-brand-green">
-                    <FlaskConical class="w-6 h-6" />
-                  </div>
-                  <h3 class="text-xl font-black text-brand-dark uppercase">Composición Garantizada</h3>
-                </div>
-                
-                <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                  <table class="w-full text-left">
-                    <tbody class="divide-y divide-gray-100">
-                      {producto.data.composicion.map((item) => (
-                        <tr class="hover:bg-gray-50 transition-colors">
-                          <td class="px-6 py-4 font-medium text-gray-700 flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-brand-sun"></span>
-                            {item}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
+          <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <a 
+              href="https://wa.me/51941234592" 
+              target="_blank"
+              class="bg-brand-green text-white px-8 py-4 rounded-full font-black hover:bg-brand-dark transition-all shadow-lg uppercase tracking-wider text-center"
+            >
+              Cotizar Ahora
+            </a>
 
-            {producto.data.beneficios && (
-              <div>
-                <div class="flex items-center gap-3 mb-4">
-                  <div class="p-2 bg-brand-green/10 rounded-lg text-brand-green">
-                    <CheckCircle class="w-6 h-6" />
-                  </div>
-                  <h3 class="text-xl font-black text-brand-dark uppercase">Beneficios Clave</h3>
-                </div>
-                <ul class="space-y-3">
-                  {producto.data.beneficios.map(ben => (
-                    <li class="flex items-start gap-3 text-gray-600 font-medium">
-                      <CheckCircle class="w-5 h-5 text-brand-sun shrink-0 mt-0.5" />
-                      {ben}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {pdf && (
+              <a 
+                href={pdf} 
+                target="_blank"
+                download
+                class="bg-white text-brand-dark border-2 border-brand-dark px-8 py-4 rounded-full font-bold hover:bg-brand-dark hover:text-white transition-all uppercase tracking-wider text-center flex items-center justify-center gap-2"
+              >
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                Descargar Ficha PDF
+              </a>
             )}
-
-            {producto.data.aplicacion && (
-              <div>
-                 <div class="flex items-center gap-3 mb-4">
-                  <div class="p-2 bg-brand-green/10 rounded-lg text-brand-green">
-                    <Sprout class="w-6 h-6" />
-                  </div>
-                  <h3 class="text-xl font-black text-brand-dark uppercase">Modo de Aplicación</h3>
-                </div>
-                <div class="bg-brand-light p-6 rounded-2xl border-l-4 border-brand-green">
-                  <p class="text-brand-earth italic font-medium leading-relaxed">
-                    "{producto.data.aplicacion}"
-                  </p>
-                </div>
-              </div>
-            )}
-
           </div>
-
-          <div class="mt-12 pt-8 border-t border-gray-100 flex gap-4">
-             <a href="/contacto" class="inline-flex items-center gap-2 bg-brand-dark text-white px-8 py-4 rounded-full font-black hover:bg-brand-sun transition-all uppercase tracking-wider">
-               Cotizar Ahora <ArrowRight class="w-5 h-5" />
-             </a>
-          </div>
-
         </div>
       </div>
     </div>
   </section>
+
+  {fichaTecnica && (
+  <section class="py-20 bg-gray-50 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-8 flex items-center gap-3">
+                    Análisis Garantizado
+                </h3>
+                <div class="space-y-4">
+                    {fichaTecnica.analisisGarantizado && Object.entries(fichaTecnica.analisisGarantizado).map(([key, value]) => (
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-3 last:border-0">
+                            <span class="font-bold text-gray-500 uppercase text-sm tracking-wider">
+                                {key.replace(/([A-Z])/g, ' $1').trim()}
+                            </span>
+                            <span class="font-black text-brand-dark text-lg">{value}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                
+                <div class="bg-white p-8 rounded-3xl shadow-lg border-l-8 border-brand-sun">
+                    <h3 class="text-2xl font-black uppercase italic mb-6 text-brand-dark">Beneficios Clave</h3>
+                    <ul class="space-y-4">
+                        {fichaTecnica.beneficios?.map((beneficio) => (
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-brand-green shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                <span class="font-bold text-gray-700 leading-snug">{beneficio}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-lg border border-brand-green/20">
+                    <h3 class="text-xl font-black uppercase italic mb-4 text-brand-green">Modo de Aplicación</h3>
+                    <p class="text-gray-700 font-medium leading-relaxed">
+                        {fichaTecnica.aplicacion}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  </section>
+  )}
 </Layout>
