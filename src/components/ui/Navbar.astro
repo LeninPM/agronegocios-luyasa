@@ -1,39 +1,43 @@
 ---
-import { Menu, X } from 'lucide-astro';
+import { Menu, X } from "lucide-astro";
 
 const menuItems = [
-  { name: 'Inicio', href: '/' },
-  { name: 'Nosotros', href: '/nosotros' },
-  { name: 'Productos', href: '/productos' },
-  { name: 'Contacto', href: '/contacto' },
+  { name: "Inicio", href: "/" },
+  { name: "Nosotros", href: "/nosotros" },
+  { name: "Productos", href: "/productos" },
+  { name: "Contacto", href: "/contacto" },
 ];
 ---
 
-<nav class="absolute top-10 w-full z-50 transition-all duration-300 border-b border-white/10" id="main-header">
+<nav
+  class="absolute top-10 w-full z-50 transition-all duration-300 border-b border-white/10"
+  id="main-header"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
-      
       <div class="shrink-0 flex items-center">
         <a href="/" class="group">
-           <img 
-             src="/images/logo.png" 
-             alt="Logo Agronegocios Luyasa" 
-             class="h-16 w-auto object-contain transition-transform group-hover:scale-105"
-           />
+          <img
+            src="/images/logo.png"
+            alt="Logo Agronegocios Luyasa"
+            class="h-16 w-auto object-contain transition-transform group-hover:scale-105"
+          />
         </a>
       </div>
 
       <div class="hidden md:flex space-x-8 items-center">
-        {menuItems.map((item) => (
-          <a
-            href={item.href}
-            class="text-white hover:text-brand-sun px-3 py-2 text-sm font-bold uppercase tracking-wider transition-colors drop-shadow-md"
-          >
-            {item.name}
-          </a>
-        ))}
-        <a 
-          href="https://wa.me/51941234592" 
+        {
+          menuItems.map((item) => (
+            <a
+              href={item.href}
+              class="text-white hover:text-brand-sun px-3 py-2 text-sm font-bold uppercase tracking-wider transition-colors drop-shadow-md"
+            >
+              {item.name}
+            </a>
+          ))
+        }
+        <a
+          href="https://wa.me/51941234592"
           target="_blank"
           class="bg-brand-sun text-brand-dark px-6 py-2 rounded-full font-black text-sm hover:bg-white transition-all uppercase shadow-lg transform hover:scale-105"
         >
@@ -42,24 +46,33 @@ const menuItems = [
       </div>
 
       <div class="md:hidden flex items-center">
-        <button id="mobile-menu-button" class="text-white hover:text-brand-sun transition-colors p-2">
+        <button
+          id="mobile-menu-button"
+          class="text-white hover:text-brand-sun transition-colors p-2"
+          aria-label="Abrir menú de navegación"
+        >
           <Menu class="w-8 h-8" />
         </button>
       </div>
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 backdrop-blur-xl absolute top-full left-0 w-full border-t border-white/10 shadow-2xl">
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-brand-dark/95 backdrop-blur-xl absolute top-full left-0 w-full border-t border-white/10 shadow-2xl"
+  >
     <div class="px-4 pt-4 pb-8 space-y-2">
-      {menuItems.map((item) => (
-        <a
-          href={item.href}
-          class="block text-white hover:text-brand-sun hover:bg-white/5 px-4 py-4 rounded-xl text-base font-bold uppercase tracking-wider transition-all border-b border-white/5 last:border-0"
-        >
-          {item.name}
-        </a>
-      ))}
-      <a 
+      {
+        menuItems.map((item) => (
+          <a
+            href={item.href}
+            class="block text-white hover:text-brand-sun hover:bg-white/5 px-4 py-4 rounded-xl text-base font-bold uppercase tracking-wider transition-all border-b border-white/5 last:border-0"
+          >
+            {item.name}
+          </a>
+        ))
+      }
+      <a
         href="/contacto"
         class="block w-full text-center bg-brand-sun text-brand-dark mt-6 px-4 py-4 rounded-xl text-base font-black uppercase shadow-lg"
       >
@@ -71,12 +84,12 @@ const menuItems = [
 
 <script>
   // Script simplificado (solo para el móvil, ya que el menú de escritorio no baja)
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
   let isMenuOpen = false;
 
-  mobileMenuButton?.addEventListener('click', () => {
+  mobileMenuButton?.addEventListener("click", () => {
     isMenuOpen = !isMenuOpen;
-    mobileMenu?.classList.toggle('hidden');
+    mobileMenu?.classList.toggle("hidden");
   });
 </script>

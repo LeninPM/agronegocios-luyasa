@@ -11,10 +11,10 @@ const productos = defineCollection({
     destacado: z.boolean(),
     orden: z.number().optional(),
     
-    // AGREGA ESTA LÍNEA PARA EL PDF
+    // AGREGA ESTA LÍNEA OBLIGATORIAMENTE
     pdf: z.string().optional(),
 
-    // Estructura nueva (NPK, etc)
+    // Estructura nueva
     fichaTecnica: z.object({
       presentacion: z.string().optional(),
       composicion: z.array(z.object({ ingrediente: z.string() })).optional(),
@@ -26,7 +26,7 @@ const productos = defineCollection({
     }).optional(),
 
     // Compatibilidad antigua
-    ficha_tecnica: z.string().optional(), 
+    ficha_tecnica: z.string().optional(),
     composicion: z.array(z.string()).optional(),
     aplicacion: z.string().optional(),
     beneficios: z.array(z.string()).optional(),
