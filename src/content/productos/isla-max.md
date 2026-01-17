@@ -3,7 +3,7 @@ titulo: "Isla Max"
 nombre: "Isla Max - Crecimiento Vegetativo"
 descripcion: "La potencia de 3 guanos: Isla, Codorniz y Gallinaza para hortalizas."
 resumen: "Máximo desarrollo de hojas y tallos. Ideal para Lechuga, Espinaca y Hortalizas."
-imagen: "/images/isla-max.png"
+imagen: "/images/isla-max.webp"
 pdf: "/docs/FICHA_TECNICA_ISLA_MAX.pdf"
 destacado: false
 orden: 2

@@ -1,90 +1,158 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PageHeader from '../components/ui/PageHeader.astro';
-import { Phone, MapPin, Mail, Clock, MessageCircle } from 'lucide-astro';
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
+import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
 ---
 
 <Layout title="Contacto | Agronegocios Luyasa Perú SAC">
-  
-  <PageHeader 
-    title="Contáctanos" 
+  <PageHeader
+    title="Contáctanos"
     subtitle="Estamos listos para atenderte"
     bgImage="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2832&auto=format&fit=crop"
   />
 
   <section class="py-20 bg-white relative overflow-hidden">
-    
-    <div class="absolute inset-0 opacity-[0.03] pointer-events-none z-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z\' fill=\'%234B3621\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+    <div
+      class="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
+      style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z\' fill=\'%234B3621\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"
+    >
+    </div>
 
     <div class="max-w-7xl mx-auto px-4 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        
         <div>
-          <h2 class="text-4xl font-black text-brand-dark uppercase italic mb-8">Información Directa</h2>
-          
+          <h2 class="text-4xl font-black text-brand-dark uppercase italic mb-8">
+            Información Directa
+          </h2>
+
           <div class="space-y-8">
             <div class="flex items-start gap-6 group">
-              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+              <div
+                class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
+              >
                 <MapPin class="w-8 h-8" />
               </div>
               <div>
-                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Planta Principal</h3>
-                <p class="text-brand-earth font-medium">Av. La Capitana, Huachipa, Lima</p>
-                <p class="text-sm text-gray-500 mt-1">Atención previa coordinación</p>
+                <h3
+                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
+                >
+                  Planta Principal
+                </h3>
+                <p class="text-brand-earth font-medium">
+                  Av. La Capitana, Huachipa, Lima
+                </p>
+                <p class="text-sm text-gray-500 mt-1">
+                  Atención previa coordinación
+                </p>
               </div>
             </div>
 
             <div class="flex items-start gap-6 group">
-              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+              <div
+                class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
+              >
                 <Phone class="w-8 h-8" />
               </div>
               <div>
-                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Ventas y Asesoría</h3>
+                <h3
+                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
+                >
+                  Ventas y Asesoría
+                </h3>
                 <p class="text-brand-earth font-medium">+51 941 234 592</p>
               </div>
             </div>
 
-             <div class="flex items-start gap-6 group">
-              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+            <div class="flex items-start gap-6 group">
+              <div
+                class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
+              >
                 <Mail class="w-8 h-8" />
               </div>
               <div>
-                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Correo Electrónico</h3>
-                <p class="text-brand-earth font-medium break-all">agronegociosluyasaperu.sac@gmail.com</p>
+                <h3
+                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
+                >
+                  Correo Electrónico
+                </h3>
+                <p class="text-brand-earth font-medium break-all">
+                  agronegociosluyasaperu.sac@gmail.com
+                </p>
               </div>
             </div>
-            
-             <div class="flex items-start gap-6 group">
-              <div class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors">
+
+            <div class="flex items-start gap-6 group">
+              <div
+                class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
+              >
                 <Clock class="w-8 h-8" />
               </div>
               <div>
-                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">Horario</h3>
-                <p class="text-brand-earth font-medium">Lunes a Sábado: 8am - 6pm</p>
+                <h3
+                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
+                >
+                  Horario
+                </h3>
+                <p class="text-brand-earth font-medium">
+                  Lunes a Sábado: 8am - 6pm
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl border border-gray-100">
-          <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-2">Cotizar por WhatsApp</h3>
-          <p class="text-gray-500 mb-8">Completa los datos y te responderemos al instante.</p>
+        <div
+          class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl border border-gray-100"
+        >
+          <h3 class="text-2xl font-black text-brand-dark uppercase italic mb-2">
+            Cotizar por WhatsApp
+          </h3>
+          <p class="text-gray-500 mb-8">
+            Completa los datos y te responderemos al instante.
+          </p>
 
           <form id="whatsapp-form" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label for="nombre" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Nombre</label>
-                <input type="text" id="nombre" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors" placeholder="Tu nombre">
+                <label
+                  for="nombre"
+                  class="text-sm font-bold text-brand-dark uppercase tracking-wide"
+                  >Nombre</label
+                >
+                <input
+                  type="text"
+                  id="nombre"
+                  required
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors"
+                  placeholder="Tu nombre"
+                />
               </div>
               <div class="space-y-2">
-                <label for="ciudad" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Ciudad / Lugar</label>
-                <input type="text" id="ciudad" required class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors" placeholder="Ej: Satipo, Junín">
+                <label
+                  for="ciudad"
+                  class="text-sm font-bold text-brand-dark uppercase tracking-wide"
+                  >Ciudad / Lugar</label
+                >
+                <input
+                  type="text"
+                  id="ciudad"
+                  required
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors"
+                  placeholder="Ej: Satipo, Junín"
+                />
               </div>
             </div>
 
             <div class="space-y-2">
-              <label for="cultivo" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Cultivo de interés</label>
-              <select id="cultivo" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors appearance-none">
+              <label
+                for="cultivo"
+                class="text-sm font-bold text-brand-dark uppercase tracking-wide"
+                >Cultivo de interés</label
+              >
+              <select
+                id="cultivo"
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors appearance-none"
+              >
                 <option value="Consultar General">Consultar General</option>
                 <option value="Palto">Palto</option>
                 <option value="Cafe">Café</option>
@@ -96,54 +164,69 @@ import { Phone, MapPin, Mail, Clock, MessageCircle } from 'lucide-astro';
             </div>
 
             <div class="space-y-2">
-              <label for="mensaje" class="text-sm font-bold text-brand-dark uppercase tracking-wide">Detalle del Pedido</label>
-              <textarea id="mensaje" rows="4" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors" placeholder="Hola, quisiera saber el precio de 50 sacos de..."></textarea>
+              <label
+                for="mensaje"
+                class="text-sm font-bold text-brand-dark uppercase tracking-wide"
+                >Detalle del Pedido</label
+              >
+              <textarea
+                id="mensaje"
+                rows="4"
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors"
+                placeholder="Hola, quisiera saber el precio de 50 sacos de..."
+              ></textarea>
             </div>
 
-            <button type="submit" class="w-full bg-[#25D366] text-white font-black py-4 rounded-xl transition-all hover:bg-[#128C7E] uppercase tracking-wider flex items-center justify-center gap-3 shadow-lg shadow-green-200 transform hover:-translate-y-1">
+            <button
+              type="submit"
+              class="w-full bg-[#25D366] text-white font-black py-4 rounded-xl transition-all hover:bg-[#128C7E] uppercase tracking-wider flex items-center justify-center gap-3 shadow-lg shadow-green-200 transform hover:-translate-y-1"
+            >
               <span>Enviar a WhatsApp</span>
               <MessageCircle class="w-6 h-6" />
             </button>
           </form>
         </div>
-
       </div>
     </div>
   </section>
 
   <section class="h-96 w-full bg-gray-200 relative">
-     <iframe 
-       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.502967676773!2d-76.9555!3d-12.0088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c3821033d599%3A0x627d30d176b62791!2sAv.%20La%20Capitana%2C%20Lurigancho-Chosica%2015457!5e0!3m2!1ses-419!2spe!4v1709920000000!5m2!1ses-419!2spe" 
-       width="100%" 
-       height="100%" 
-       style="border:0;" 
-       allowfullscreen="" 
-       loading="lazy" 
-       referrerpolicy="no-referrer-when-downgrade"
-       class="absolute inset-0 grayscale hover:grayscale-0 transition-all duration-500"
-     ></iframe>
+    <iframe
+      src="https://www.google.com/maps/embed?..."
+      width="100%"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa de ubicación de Planta Huachipa - Agronegocios Luyasa"
+    ></iframe>
   </section>
-
 </Layout>
 
 <script>
-  const form = document.getElementById('whatsapp-form');
-  
+  const form = document.getElementById("whatsapp-form");
+
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      
-      const nombre = (document.getElementById('nombre') as HTMLInputElement).value;
-      const ciudad = (document.getElementById('ciudad') as HTMLInputElement).value;
-      const cultivo = (document.getElementById('cultivo') as HTMLSelectElement).value;
-      const mensaje = (document.getElementById('mensaje') as HTMLTextAreaElement).value;
+
+      const nombre = (document.getElementById("nombre") as HTMLInputElement)
+        .value;
+      const ciudad = (document.getElementById("ciudad") as HTMLInputElement)
+        .value;
+      const cultivo = (document.getElementById("cultivo") as HTMLSelectElement)
+        .value;
+      const mensaje = (
+        document.getElementById("mensaje") as HTMLTextAreaElement
+      ).value;
 
       const telefonoLuyasa = "51941234592";
 
       const texto = `Hola Luyasa, mi nombre es *${nombre}* de *${ciudad}*.\nEstoy interesado en productos para *${cultivo}*.\n\nConsulta: ${mensaje}`;
 
       const url = `https://wa.me/${telefonoLuyasa}?text=${encodeURIComponent(texto)}`;
-      window.open(url, '_blank');
+      window.open(url, "_blank");
     });
   }
 </script>

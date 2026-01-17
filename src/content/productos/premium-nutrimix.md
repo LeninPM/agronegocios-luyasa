@@ -3,7 +3,7 @@ titulo: "Premium Nutrimix"
 nombre: "Premium Nutrimix - Alta Producción"
 descripcion: "Nuestra fórmula más potente en Potasio para máxima calidad de fruto."
 resumen: "Concentrado Premium con mayor porcentaje de Potasio para agroexportación y calidad extra."
-imagen: "/images/premium-nutrimix.png"
+imagen: "/images/premium-nutrimix.webp"
 pdf: "/docs/FICHA_TECNICA_PREMIUM_NUTRIMIX.pdf"
 destacado: true
 orden: 3

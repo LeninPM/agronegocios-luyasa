@@ -1,30 +1,29 @@
 ---
+// AHORA: Usamos tu imagen local optimizada para carga instantánea
 const images = [
-  // RECUERDA: Si tienes las fotos nuevas de la clienta, ponlas en public/images/
-  // y cambia estas rutas. Por ahora dejo las optimizadas de 1200px.
-  "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1200&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1200&auto=format&fit=crop", 
-  "https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1200&auto=format&fit=crop"
+  "/images/promocion-en-cultivo.webp"
 ];
 ---
 
-<section class="relative h-screen min-h-150 flex items-center overflow-hidden">
+<section class="relative h-screen min-h-[600px] flex items-center overflow-hidden">
   
   <div class="absolute inset-0 z-0" id="hero-carousel">
     {images.map((img, index) => (
       <img 
         src={img} 
-        alt={`Imagen de fondo ${index + 1}`} 
-        class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
-        data-index={index}
-        loading="eager" 
+        alt="Fondo Agronegocios Luyasa" 
+        class={`absolute inset-0 w-full h-full object-cover ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+        fetchpriority="high"
+        loading="eager"
       />
     ))}
-    <div class="absolute inset-0 bg-black/60 z-10"></div>
+    
+    <div class="absolute inset-0 bg-black/50 z-10"></div>
   </div>
 
   <div class="relative z-20 max-w-7xl mx-auto px-4 flex flex-col justify-center h-full pt-20">
-    <div class="max-w-4xl"> <span class="block text-brand-sun font-bold uppercase tracking-[0.2em] mb-4 animate-fadeIn">
+    <div class="max-w-4xl">
+      <span class="block text-brand-sun font-bold uppercase tracking-[0.2em] mb-4 animate-fadeIn">
         Guano de Isla • Codorniz • Gallinaza
       </span>
       
@@ -35,16 +34,15 @@ const images = [
       
       <p class="text-xl text-white mb-8 max-w-2xl font-medium leading-relaxed animate-fadeIn delayed drop-shadow-md">
         Potencia tu cultivo con composiciones ricas en Nitrógeno, Fósforo y Potasio. 
-        Cada producto pasa por rigurosos análisis de macro y microelementos. 
-        <span class="text-brand-sun font-bold">Incluye Certificado y Ficha Técnica.</span>
+        Garantía de composición y resultados comprobados en campo.
       </p>
       
       <div class="flex flex-col sm:flex-row gap-4 animate-fadeIn delayed-more">
-        <a href="/productos" class="bg-brand-green text-white px-8 py-4 rounded-full font-black hover:bg-brand-sun transition-all shadow-lg hover:shadow-brand-green/50 uppercase tracking-wider text-center border-2 border-transparent">
+        <a href="/productos" class="bg-brand-green text-brand-dark px-8 py-4 rounded-full font-black hover:bg-brand-sun transition-all shadow-lg hover:shadow-brand-green/50 uppercase tracking-wider text-center border-2 border-transparent">
           Ver Productos
         </a>
         
-        <a href="/contacto" class="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-black hover:bg-white hover:text-black transition-all uppercase tracking-wider text-center">
+        <a href="https://wa.me/51941234592" target="_blank" class="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-black hover:bg-white hover:text-black transition-all uppercase tracking-wider text-center">
           Contactar Asesor
         </a>
       </div>
@@ -55,11 +53,17 @@ const images = [
 <script>
   const images = document.querySelectorAll('#hero-carousel img');
   let current = 0;
-  if (images.length > 0) {
+  
+  // SOLUCIÓN INTELIGENTE:
+  // Solo activamos el carrusel si hay más de 1 imagen.
+  // Como ahora solo tienes una, esto no gastará recursos del navegador.
+  if (images.length > 1) {
     setInterval(() => {
       images[current].classList.remove('opacity-100');
       images[current].classList.add('opacity-0');
+      
       current = (current + 1) % images.length;
+      
       images[current].classList.remove('opacity-0');
       images[current].classList.add('opacity-100');
     }, 5000); 

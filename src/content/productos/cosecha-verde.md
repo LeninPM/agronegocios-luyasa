@@ -3,7 +3,7 @@ titulo: "Cosecha Verde"
 nombre: "Cosecha Verde - Mezcla Especial Frutales"
 descripcion: "Fórmula balanceada con Roca Fosfórica y Ceniza para Café, Cacao y Frutales."
 resumen: "Potencia el cuajado, peso y calibre del grano. Ideal para Café y Cacao."
-imagen: "/images/cosecha-verde.png"
+imagen: "/images/cosecha-verde.webp"
 pdf: "/docs/FICHA_TECNICA_COSECHA_VERDE.pdf"
 destacado: true
 orden: 1
