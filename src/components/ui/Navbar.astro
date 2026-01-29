@@ -9,6 +9,17 @@ const menuItems = [
 ];
 ---
 
+<div class="absolute top-0 w-full z-50 bg-brand-green text-white h-10 flex items-center justify-center text-xs font-bold uppercase tracking-widest border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center w-full">
+        <span class="hidden md:inline">🌱 Expertos en Nutrición Vegetal</span>
+        <span class="flex items-center gap-2 mx-auto md:mx-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Envíos a todo el Perú: 941 234 592
+        </span>
+        <span class="hidden md:inline">🇵🇪</span>
+    </div>
+</div>
+
 <nav
   class="absolute top-10 w-full z-50 transition-all duration-300 border-b border-white/10"
   id="main-header"
@@ -83,7 +94,6 @@ const menuItems = [
 </nav>
 
 <script>
-  // Script simplificado (solo para el móvil, ya que el menú de escritorio no baja)
   const mobileMenuButton = document.getElementById("mobile-menu-button");
   const mobileMenu = document.getElementById("mobile-menu");
   let isMenuOpen = false;
