@@ -1,23 +1,20 @@
 ---
-// AHORA: Usamos tu imagen local optimizada para carga instantánea
-const images = [
-  "/images/promocion-en-cultivo.webp"
-];
+import { Image } from 'astro:assets';
+// Importamos la imagen desde la nueva ubicación en assets
+import heroBg from '../../assets/images/promocion-en-cultivo.webp';
 ---
 
 <section class="relative h-screen min-h-[600px] flex items-center overflow-hidden">
   
   <div class="absolute inset-0 z-0" id="hero-carousel">
-    {images.map((img, index) => (
-      <img 
-        src={img} 
+      <Image 
+        src={heroBg} 
         alt="Fondo Agronegocios Luyasa" 
-        class={`absolute inset-0 w-full h-full object-cover ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
+        class="absolute inset-0 w-full h-full object-cover opacity-100"
         fetchpriority="high"
         loading="eager"
+        quality="high"
       />
-    ))}
-    
     <div class="absolute inset-0 bg-black/50 z-10"></div>
   </div>
 

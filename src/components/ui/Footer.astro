@@ -1,15 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import logoImg from '../../assets/images/logo.png';
+---
+
 <footer class="bg-[#4B3621] text-white py-16 border-t-8 border-brand-green relative overflow-hidden">
   
   <div class="max-w-7xl mx-auto px-4 relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
       
       <div class="col-span-1 md:col-span-2">
-        <a href="/" class="inline-block mb-6" aria-label="Ir al inicio"> <img 
-            src="/images/logo.png" 
-            alt="Luyasa Perú Logo" 
-            class="h-24 w-auto rounded-full border-4 border-white/10 shadow-xl"
-            width="96" height="96" 
-          /> </a>
+        <a href="/" class="inline-block mb-6" aria-label="Ir al inicio"> 
+            <Image 
+              src={logoImg} 
+              alt="Luyasa Perú Logo" 
+              class="h-24 w-auto rounded-full border-4 border-white/10 shadow-xl"
+            /> 
+        </a>
         <p class="text-white/80 max-w-xs mb-8 font-medium text-lg leading-relaxed">
           Nutriendo el suelo peruano desde la raíz. Expertos en Guano de Isla y mezclas personalizadas.
         </p>

@@ -1,48 +1,86 @@
 ---
-import { getCollection } from 'astro:content';
-import ProductCard from '../ui/ProductCard.astro';
+// 1. Importamos el componente Image
+import { Image } from 'astro:assets';
 
-const allProducts = await getCollection('productos');
-// Ordenamos y mostramos los 3 primeros
-const productos = allProducts
-  .sort((a, b) => (a.data.orden || 99) - (b.data.orden || 99))
-  .slice(0, 3);
+// 2. Importamos las imágenes desde src/assets/
+import islaMaxImg from '../../assets/images/isla-max.webp';
+import nutrimixImg from '../../assets/images/premium-nutrimix.webp';
+import cosechaImg from '../../assets/images/cosecha-verde.webp';
+
+const products = [
+  {
+    id: "isla-max",
+    name: "Isla Max",
+    description: "Mezcla balanceada de Guano de Isla con Sulfato de Potasio. Ideal para floración y cuajado.",
+    // Usamos la variable importada, no el string
+    image: islaMaxImg, 
+    color: "bg-brand-dark"
+  },
+  {
+    id: "premium-nutrimix",
+    name: "Premium Nutrimix",
+    description: "Potente formulación NPK reforzada con microelementos esenciales para alta productividad.",
+    image: nutrimixImg,
+    color: "bg-brand-earth"
+  },
+  {
+    id: "cosecha-verde",
+    name: "Cosecha Verde",
+    description: "Bioestimulante orgánico rico en nitrógeno para un desarrollo vegetativo vigoroso.",
+    image: cosechaImg,
+    color: "bg-brand-green"
+  }
+];
 ---
 
-<section class="py-24 bg-white relative overflow-hidden">
-  
-  <div class="absolute top-0 left-0 w-full h-full opacity-30 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
-
-  <div class="max-w-7xl mx-auto px-4 relative z-10">
+<section id="productos" class="py-24 bg-white relative">
+  <div class="max-w-7xl mx-auto px-4">
     
-    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-      <div class="max-w-xl text-center md:text-left">
-        <span class="text-brand-green font-black tracking-widest uppercase text-sm mb-2 block">
-          Catálogo 2026
-        </span>
-        <h2 class="text-4xl md:text-5xl font-black text-brand-dark uppercase italic leading-none mb-4">
-          Nuestras <span class="text-brand-sun">Presentaciones</span>
-        </h2>
-        <p class="text-gray-600 font-medium text-lg leading-relaxed">
-          Abonos orgánicos y guanos de alta concentración para potenciar el rendimiento de tus cultivos.
-        </p>
-      </div>
-      
-      <a href="/productos" class="hidden md:inline-flex bg-brand-sun text-brand-dark px-8 py-3 rounded-full font-bold hover:bg-brand-dark hover:text-white transition-all transform hover:-translate-y-1 uppercase italic text-sm shadow-lg">
-        Ver catálogo completo
-      </a>
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <span class="text-brand-green font-bold uppercase tracking-widest text-sm mb-4 block">
+        Nuestros Productos
+      </span>
+      <h2 class="text-4xl md:text-5xl font-black text-brand-dark uppercase italic leading-none mb-6">
+        Nutrición Inteligente <br/> para tu Campo
+      </h2>
+      <p class="text-gray-600 text-lg font-medium">
+        Fórmulas diseñadas para maximizar el rendimiento de café, cacao, palta y frutales en suelos peruanos.
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {productos.map((prod) => (
-        <ProductCard producto={prod} />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {products.map((product) => (
+        <a href={`/productos/${product.id}`} class="group relative block h-full">
+          <div class="absolute inset-0 bg-gray-100 rounded-3xl transform group-hover:scale-105 transition-transform duration-500 shadow-xl group-hover:shadow-2xl"></div>
+          
+          <div class="relative p-8 flex flex-col h-full items-center text-center z-10">
+            <div class="relative w-full aspect-[3/4] mb-8 flex items-center justify-center">
+              <div class="absolute inset-0 bg-gradient-to-b from-white/0 to-gray-200/50 rounded-full scale-90 blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
+              
+              <Image 
+                src={product.image} 
+                alt={product.name} 
+                class="relative w-full h-full object-contain drop-shadow-2xl transform group-hover:-translate-y-4 transition-transform duration-500"
+                width={400} 
+                quality="high"
+              />
+
+            </div>
+
+            <h3 class="text-3xl font-black text-brand-dark uppercase italic mb-3 group-hover:text-brand-green transition-colors">
+              {product.name}
+            </h3>
+            
+            <p class="text-gray-600 font-medium leading-relaxed mb-6">
+              {product.description}
+            </p>
+
+            <span class="mt-auto inline-block bg-brand-sun text-brand-dark font-black px-6 py-2 rounded-full uppercase text-xs tracking-widest group-hover:bg-brand-dark group-hover:text-white transition-colors">
+              Ver Ficha Técnica
+            </span>
+          </div>
+        </a>
       ))}
-    </div>
-
-    <div class="mt-10 text-center md:hidden">
-      <a href="/productos" class="inline-block bg-brand-sun text-brand-dark px-8 py-4 rounded-full font-bold uppercase italic text-sm shadow-lg w-full">
-        Ver catálogo completo
-      </a>
     </div>
 
   </div>
