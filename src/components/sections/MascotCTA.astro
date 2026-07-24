@@ -1,10 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import mascotaImg from '../../assets/images/mascota.webp';
+import { linkWhatsApp } from '../../consts';
 
-// Datos de contacto
-const whatsappLink =
-  "https://wa.me/51941234592?text=Hola,%20me%20interesa%20la%20asesoría%20sobre%20abonos.";
+const whatsappLink = linkWhatsApp('Hola, me interesa la asesoría sobre abonos.');
 ---
 
 <section
@@ -47,6 +46,7 @@ const whatsappLink =
           <a
             href={whatsappLink}
             target="_blank"
+            rel="noopener noreferrer"
             class="bg-[#25D366] text-white px-8 py-4 rounded-full font-black hover:bg-[#128C7E] transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-green-500/30 uppercase tracking-wide"
           >
             <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"

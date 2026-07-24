@@ -1,4 +1,11 @@
 ---
+import { REDES } from '../../consts';
+
+const videos = [
+  { id: '7579767925058424065', titulo: 'Resultados en campo con abonos Luyasa' },
+  { id: '7583943400605502741', titulo: 'Aplicación de Guano de Isla en cultivo' },
+  { id: '7575227873804422417', titulo: 'Testimonio de agricultor sobre Luyasa' },
+];
 ---
 <section id="videos-section" class="py-20 bg-gray-50 border-t border-gray-200">
   <div class="max-w-7xl mx-auto px-4 text-center mb-12">
@@ -14,94 +21,109 @@
   </div>
 
   <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-    
-    <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex justify-center p-2 min-h-[500px]">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agronegocios.luya/video/7579767925058424065" data-video-id="7579767925058424065" style="max-width: 605px;min-width: 325px;"> 
-        <section> 
-            <div class="flex flex-col items-center justify-center h-full text-gray-400 gap-2">
-                <div class="w-8 h-8 border-4 border-gray-200 border-t-brand-green rounded-full animate-spin"></div>
-                <p class="text-sm font-bold">Cargando video...</p>
+    {videos.map((video) => (
+      <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex justify-center p-2 min-h-[500px]">
+        <blockquote
+          class="tiktok-embed"
+          cite={`${REDES.tiktok}/video/${video.id}`}
+          data-video-id={video.id}
+          data-titulo={video.titulo}
+          style="max-width: 605px; min-width: 325px;"
+        >
+          <section>
+            <div class="flex flex-col items-center justify-center h-full text-gray-400 gap-2 py-24">
+              <div class="w-8 h-8 border-4 border-gray-200 border-t-brand-green rounded-full animate-spin"></div>
+              <p class="text-sm font-bold">Cargando video…</p>
+              <a
+                href={`${REDES.tiktok}/video/${video.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs underline text-brand-green"
+              >
+                Ver "{video.titulo}" en TikTok
+              </a>
             </div>
-        </section> 
-      </blockquote> 
-    </div>
-
-    <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex justify-center p-2 min-h-[500px]">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agronegocios.luya/video/7583943400605502741" data-video-id="7583943400605502741" style="max-width: 605px;min-width: 325px;"> 
-         <section> 
-            <div class="flex flex-col items-center justify-center h-full text-gray-400 gap-2">
-                <div class="w-8 h-8 border-4 border-gray-200 border-t-brand-green rounded-full animate-spin"></div>
-                <p class="text-sm font-bold">Cargando video...</p>
-            </div>
-         </section>
-      </blockquote> 
-    </div>
-
-     <div class="bg-white rounded-3xl shadow-lg overflow-hidden border border-gray-100 flex justify-center p-2 min-h-[500px]">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@agronegocios.luya/video/7575227873804422417" data-video-id="7575227873804422417" style="max-width: 605px;min-width: 325px;"> 
-         <section> 
-            <div class="flex flex-col items-center justify-center h-full text-gray-400 gap-2">
-                <div class="w-8 h-8 border-4 border-gray-200 border-t-brand-green rounded-full animate-spin"></div>
-                <p class="text-sm font-bold">Cargando video...</p>
-            </div>
-         </section>
-      </blockquote> 
-    </div>
-
+          </section>
+        </blockquote>
+      </div>
+    ))}
   </div>
 
   <div class="text-center mt-12">
-    <a href="https://www.tiktok.com/@agronegocios.luya" target="_blank" class="inline-flex items-center gap-3 bg-black text-white px-8 py-4 rounded-full font-black hover:bg-gray-800 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wider text-sm">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+    <a
+      href={REDES.tiktok}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-3 bg-black text-white px-8 py-4 rounded-full font-black hover:bg-gray-800 transition-all transform hover:-translate-y-1 shadow-xl uppercase tracking-wider text-sm"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 448 512" aria-hidden="true"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
       Ver más videos en TikTok
     </a>
   </div>
 </section>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const videosSection = document.getElementById('videos-section');
-    
-    if (!videosSection) return;
+  const SCRIPT_TIKTOK = 'https://www.tiktok.com/embed.js';
 
-    // 1. Cargamos el script solo cuando el usuario baja hasta los videos (Lazy Load)
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          console.log("🚀 Cargando TikTok Embeds...");
-          const script = document.createElement('script');
-          script.src = "https://www.tiktok.com/embed.js";
-          script.async = true;
-          document.body.appendChild(script);
-          
-          observer.disconnect(); 
-
-          // 2. PARCHE DE ACCESIBILIDAD: Inyectar TITLES
-          // Como TikTok crea los iframes después, esperamos un poco y se los ponemos.
-          const checkInterval = setInterval(() => {
-            const iframes = document.querySelectorAll('iframe');
-            let fixedCount = 0;
-
-            iframes.forEach((iframe, index) => {
-                // Solo si es de TikTok y no tiene título
-                if (iframe.src.includes('tiktok') && !iframe.getAttribute('title')) {
-                    iframe.setAttribute('title', `Video Testimonio Luyasa ${index + 1}`);
-                    fixedCount++;
-                }
-            });
-
-            // Si ya arreglamos al menos 3 iframes (o pasaron 10 seg), paramos de buscar
-            if (fixedCount >= 3) {
-                clearInterval(checkInterval);
-            }
-          }, 2000); // Revisar cada 2 segundos
-
-          // Seguridad: dejar de buscar después de 15 segundos por si acaso
-          setTimeout(() => clearInterval(checkInterval), 15000);
+  /**
+   * Pone un `title` a los iframes que inyecta TikTok (los crea sin él, y sin
+   * title son inaccesibles para lectores de pantalla). Antes esto se hacía con
+   * un setInterval cada 2s durante 15s; un MutationObserver reacciona al
+   * instante y se apaga solo.
+   */
+  function observarIframes(seccion: HTMLElement) {
+    const titular = () => {
+      seccion.querySelectorAll('blockquote.tiktok-embed').forEach((bq) => {
+        const iframe = bq.querySelector('iframe');
+        if (iframe && !iframe.getAttribute('title')) {
+          iframe.setAttribute(
+            'title',
+            bq.getAttribute('data-titulo') ?? 'Video de Agronegocios Luyasa en TikTok'
+          );
         }
       });
-    }, { rootMargin: "100px" });
+    };
 
-    observer.observe(videosSection);
-  });
+    const observer = new MutationObserver(titular);
+    observer.observe(seccion, { childList: true, subtree: true });
+    titular();
+
+    // Los embeds nunca tardan tanto; a los 30s dejamos de escuchar.
+    setTimeout(() => observer.disconnect(), 30000);
+    return observer;
+  }
+
+  function initVideos() {
+    const seccion = document.getElementById('videos-section');
+    if (!seccion) return;
+
+    // Carga diferida: el script de TikTok solo baja cuando el usuario
+    // llega a la sección, no en el primer pintado.
+    const io = new IntersectionObserver(
+      (entradas) => {
+        if (!entradas.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+
+        // Se re-inyecta en cada visita porque embed.js solo escanea el DOM al
+        // ejecutarse: si volvieras a la home con el ClientRouter, los
+        // blockquotes nuevos se quedarían sin renderizar.
+        document
+          .querySelectorAll(`script[src="${SCRIPT_TIKTOK}"]`)
+          .forEach((s) => s.remove());
+
+        const script = document.createElement('script');
+        script.src = SCRIPT_TIKTOK;
+        script.async = true;
+        document.body.appendChild(script);
+
+        observarIframes(seccion);
+      },
+      { rootMargin: '200px' }
+    );
+
+    io.observe(seccion);
+  }
+
+  // Se dispara en la carga inicial y tras cada navegación del ClientRouter.
+  document.addEventListener('astro:page-load', initVideos);
 </script>

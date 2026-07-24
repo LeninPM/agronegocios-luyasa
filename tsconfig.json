@@ -1,0 +1,15 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "node_modules"],
+  "compilerOptions": {
+    // Los paquetes modernos (como @lucide/astro) declaran sus rutas con el
+    // campo "exports". Sin "bundler", TypeScript no las encuentra y marca
+    // errores falsos aunque el build de Astro funcione perfecto.
+    "moduleResolution": "bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+    "strictNullChecks": true,
+    "allowJs": true
+  }
+}

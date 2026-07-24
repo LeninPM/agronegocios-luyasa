@@ -1,41 +1,19 @@
 ---
-// 1. Importamos el componente Image
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
-// 2. Importamos las imágenes desde src/assets/
-import islaMaxImg from '../../assets/images/isla-max.webp';
-import nutrimixImg from '../../assets/images/premium-nutrimix.webp';
-import cosechaImg from '../../assets/images/cosecha-verde.webp';
-
-const products = [
-  {
-    id: "isla-max",
-    name: "Isla Max",
-    description: "Mezcla balanceada de Guano de Isla con Sulfato de Potasio. Ideal para floración y cuajado.",
-    // Usamos la variable importada, no el string
-    image: islaMaxImg, 
-    color: "bg-brand-dark"
-  },
-  {
-    id: "premium-nutrimix",
-    name: "Premium Nutrimix",
-    description: "Potente formulación NPK reforzada con microelementos esenciales para alta productividad.",
-    image: nutrimixImg,
-    color: "bg-brand-earth"
-  },
-  {
-    id: "cosecha-verde",
-    name: "Cosecha Verde",
-    description: "Bioestimulante orgánico rico en nitrógeno para un desarrollo vegetativo vigoroso.",
-    image: cosechaImg,
-    color: "bg-brand-green"
-  }
-];
+// Antes esta lista estaba escrita a mano y no coincidía con las fichas:
+// la home describía a Isla Max como producto de floración cuando en realidad
+// es de crecimiento vegetativo. Ahora sale de los .md, así que home y catálogo
+// no pueden volver a contradecirse.
+const productos = (await getCollection('productos')).sort(
+  (a, b) => a.data.orden - b.data.orden
+);
 ---
 
 <section id="productos" class="py-24 bg-white relative">
   <div class="max-w-7xl mx-auto px-4">
-    
+
     <div class="text-center max-w-3xl mx-auto mb-20">
       <span class="text-brand-green font-bold uppercase tracking-widest text-sm mb-4 block">
         Nuestros Productos
@@ -49,33 +27,33 @@ const products = [
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      {products.map((product) => (
-        <a href={`/productos/${product.id}`} class="group relative block h-full">
+      {productos.map((producto) => (
+        <a href={`/productos/${producto.slug}`} class="group relative block h-full">
           <div class="absolute inset-0 bg-gray-100 rounded-3xl transform group-hover:scale-105 transition-transform duration-500 shadow-xl group-hover:shadow-2xl"></div>
-          
+
           <div class="relative p-8 flex flex-col h-full items-center text-center z-10">
             <div class="relative w-full aspect-[3/4] mb-8 flex items-center justify-center">
               <div class="absolute inset-0 bg-gradient-to-b from-white/0 to-gray-200/50 rounded-full scale-90 blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
-              
-              <Image 
-                src={product.image} 
-                alt={product.name} 
+
+              <Image
+                src={producto.data.imagen}
+                alt={producto.data.nombre}
                 class="relative w-full h-full object-contain drop-shadow-2xl transform group-hover:-translate-y-4 transition-transform duration-500"
-                width={400} 
+                width={400}
                 quality="high"
               />
 
             </div>
 
             <h3 class="text-3xl font-black text-brand-dark uppercase italic mb-3 group-hover:text-brand-green transition-colors">
-              {product.name}
+              {producto.data.titulo}
             </h3>
-            
+
             <p class="text-gray-600 font-medium leading-relaxed mb-6">
-              {product.description}
+              {producto.data.descripcion}
             </p>
 
-            <span class="mt-auto inline-block bg-brand-sun text-brand-dark font-black px-6 py-2 rounded-full uppercase text-xs tracking-widest group-hover:bg-brand-dark group-hover:text-white transition-colors">
+            <span class="mt-auto inline-block bg-brand-sun text-white font-black px-6 py-2 rounded-full uppercase text-xs tracking-widest group-hover:bg-brand-dark transition-colors">
               Ver Ficha Técnica
             </span>
           </div>

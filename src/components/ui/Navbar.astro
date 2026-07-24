@@ -1,8 +1,8 @@
 ---
-// Importamos los 3 iconos elegantes: Menu, X, Phone, Leaf y Globe
-import { Menu, X, Phone, Leaf, Globe } from "lucide-astro";
+import { Menu, X, Phone, Leaf } from "@lucide/astro";
 import { Image } from "astro:assets";
 import logoImg from "../../assets/images/logo.png";
+import { TELEFONO_VISIBLE, linkWhatsApp } from "../../consts";
 
 const menuItems = [
   { name: "Inicio", href: "/" },
@@ -10,35 +10,37 @@ const menuItems = [
   { name: "Productos", href: "/productos" },
   { name: "Contacto", href: "/contacto" },
 ];
+
+const rutaActual = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <div class="absolute top-0 w-full z-50 bg-brand-green text-white h-10 flex items-center justify-center text-xs font-bold uppercase tracking-widest border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 flex justify-between items-center w-full">
-        
+
         <span class="hidden md:inline-flex items-center gap-2">
-            <Leaf class="w-3.5 h-3.5" stroke-width="2" /> 
+            <Leaf class="w-3.5 h-3.5" stroke-width="2" aria-hidden="true" />
             Expertos en Nutrición Vegetal
         </span>
 
         <span class="flex items-center gap-2 mx-auto md:mx-0">
-            <Phone class="w-3.5 h-3.5" stroke-width="2" />
-            Envíos a nivel nacional e internacional: +51 941 234 592
+            <Phone class="w-3.5 h-3.5" stroke-width="2" aria-hidden="true" />
+            <span class="hidden sm:inline">Envíos a nivel nacional e internacional:</span>
+            {TELEFONO_VISIBLE}
         </span>
 
-        <span class="hidden md:inline-flex items-center gap-2">
-            <Globe class="w-3.5 h-3.5" stroke-width="2" />
-        </span>
+        <span class="hidden md:inline-flex items-center gap-2 w-3.5"></span>
     </div>
 </div>
 
 <nav
   class="absolute top-10 w-full z-50 transition-all duration-300 border-b border-white/10"
   id="main-header"
+  aria-label="Navegación principal"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
       <div class="shrink-0 flex items-center">
-        <a href="/" class="group">
+        <a href="/" class="group" aria-label="Ir al inicio">
           <Image
             src={logoImg}
             alt="Logo Agronegocios Luyasa"
@@ -53,16 +55,23 @@ const menuItems = [
           menuItems.map((item) => (
             <a
               href={item.href}
-              class="text-white hover:text-brand-sun px-3 py-2 text-sm font-bold uppercase tracking-wider transition-colors drop-shadow-md"
+              aria-current={rutaActual === item.href ? "page" : undefined}
+              class:list={[
+                "px-3 py-2 text-sm font-bold uppercase tracking-wider transition-colors drop-shadow-md",
+                rutaActual === item.href
+                  ? "text-brand-sun"
+                  : "text-white hover:text-brand-sun",
+              ]}
             >
               {item.name}
             </a>
           ))
         }
         <a
-          href="https://wa.me/51941234592"
+          href={linkWhatsApp("Hola, quisiera cotizar sus abonos.")}
           target="_blank"
-          class="bg-brand-sun text-brand-dark px-6 py-2 rounded-full font-black text-sm hover:bg-white transition-all uppercase shadow-lg transform hover:scale-105"
+          rel="noopener noreferrer"
+          class="bg-brand-sun text-white px-6 py-2 rounded-full font-black text-sm hover:bg-white hover:text-brand-dark transition-all uppercase shadow-lg transform hover:scale-105"
         >
           Cotizar
         </a>
@@ -71,10 +80,14 @@ const menuItems = [
       <div class="md:hidden flex items-center">
         <button
           id="mobile-menu-button"
+          type="button"
           class="text-white hover:text-brand-sun transition-colors p-2"
           aria-label="Abrir menú de navegación"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
         >
-          <Menu class="w-8 h-8" />
+          <span id="icon-menu"><Menu class="w-8 h-8" aria-hidden="true" /></span>
+          <span id="icon-close" class="hidden"><X class="w-8 h-8" aria-hidden="true" /></span>
         </button>
       </div>
     </div>
@@ -89,7 +102,13 @@ const menuItems = [
         menuItems.map((item) => (
           <a
             href={item.href}
-            class="block text-white hover:text-brand-sun hover:bg-white/5 px-4 py-4 rounded-xl text-base font-bold uppercase tracking-wider transition-all border-b border-white/5 last:border-0"
+            aria-current={rutaActual === item.href ? "page" : undefined}
+            class:list={[
+              "block px-4 py-4 rounded-xl text-base font-bold uppercase tracking-wider transition-all border-b border-white/5 last:border-0",
+              rutaActual === item.href
+                ? "text-brand-sun bg-white/5"
+                : "text-white hover:text-brand-sun hover:bg-white/5",
+            ]}
           >
             {item.name}
           </a>
@@ -97,7 +116,7 @@ const menuItems = [
       }
       <a
         href="/contacto"
-        class="block w-full text-center bg-brand-sun text-brand-dark mt-6 px-4 py-4 rounded-xl text-base font-black uppercase shadow-lg"
+        class="block w-full text-center bg-brand-sun text-white mt-6 px-4 py-4 rounded-xl text-base font-black uppercase shadow-lg"
       >
         Solicitar Cotización
       </a>
@@ -106,12 +125,50 @@ const menuItems = [
 </nav>
 
 <script>
-  const mobileMenuButton = document.getElementById("mobile-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
-  let isMenuOpen = false;
+  // `astro:page-load` se dispara en la carga inicial Y después de cada navegación
+  // del ClientRouter. Sin esto el listener queda atado al botón viejo y el menú
+  // móvil deja de abrir apenas navegas a otra página.
+  function initMenuMovil() {
+    const boton = document.getElementById("mobile-menu-button");
+    const menu = document.getElementById("mobile-menu");
+    const iconoMenu = document.getElementById("icon-menu");
+    const iconoCerrar = document.getElementById("icon-close");
 
-  mobileMenuButton?.addEventListener("click", () => {
-    isMenuOpen = !isMenuOpen;
-    mobileMenu?.classList.toggle("hidden");
+    if (!boton || !menu) return;
+
+    const setEstado = (abierto: boolean) => {
+      menu.classList.toggle("hidden", !abierto);
+      iconoMenu?.classList.toggle("hidden", abierto);
+      iconoCerrar?.classList.toggle("hidden", !abierto);
+      boton.setAttribute("aria-expanded", String(abierto));
+      boton.setAttribute(
+        "aria-label",
+        abierto ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+      );
+    };
+
+    boton.addEventListener("click", () => {
+      setEstado(menu.classList.contains("hidden"));
+    });
+
+    // Cerrar al tocar un enlace (con ClientRouter la página no recarga sola).
+    menu.querySelectorAll("a").forEach((enlace) => {
+      enlace.addEventListener("click", () => setEstado(false));
+    });
+
+    cerrarConEscape = () => {
+      if (menu.classList.contains("hidden")) return;
+      setEstado(false);
+      boton.focus();
+    };
+  }
+
+  // Este listener va a nivel de `document`, que sobrevive a las navegaciones.
+  // Se registra UNA sola vez para no ir acumulando uno por cada página visitada.
+  let cerrarConEscape: (() => void) | null = null;
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") cerrarConEscape?.();
   });
+
+  document.addEventListener("astro:page-load", initMenuMovil);
 </script>

@@ -1,19 +1,41 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageHeader from "../components/ui/PageHeader.astro";
-import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
+import { Phone, MapPin, Mail, Clock, MessageCircle } from "@lucide/astro";
+import {
+  DIRECCION,
+  EMAIL,
+  MAPA_EMBED_URL,
+  TELEFONO_VISIBLE,
+  WHATSAPP_NUMERO,
+} from "../consts";
+
+const cultivos = [
+  "Consultar General",
+  "Palto",
+  "Café",
+  "Cacao",
+  "Piña",
+  "Papa",
+  "Hortalizas",
+  "Otro",
+];
 ---
 
-<Layout title="Contacto | Agronegocios Luyasa Perú SAC">
+<Layout
+  title="Contacto | Agronegocios Luyasa Perú SAC"
+  description={`Cotiza abonos orgánicos y Guano de Isla. Planta en ${DIRECCION.completa}. WhatsApp ${TELEFONO_VISIBLE}.`}
+>
   <PageHeader
     title="Contáctanos"
     subtitle="Estamos listos para atenderte"
-    bgImage="/images/contacto-campo.png"
+    bgImage="/images/contacto-campo.jpeg"
   />
 
   <section class="py-20 bg-white relative overflow-hidden">
     <div
       class="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
+      aria-hidden="true"
       style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z\' fill=\'%234B3621\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"
     >
     </div>
@@ -30,17 +52,13 @@ import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
               <div
                 class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
               >
-                <MapPin class="w-8 h-8" />
+                <MapPin class="w-8 h-8" aria-hidden="true" />
               </div>
               <div>
-                <h3
-                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
-                >
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">
                   Planta Principal
                 </h3>
-                <p class="text-brand-earth font-medium">
-                  Av. La Capitana, Huachipa, Lima
-                </p>
+                <p class="text-brand-earth font-medium">{DIRECCION.completa}</p>
                 <p class="text-sm text-gray-500 mt-1">
                   Atención previa coordinación
                 </p>
@@ -51,15 +69,20 @@ import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
               <div
                 class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
               >
-                <Phone class="w-8 h-8" />
+                <Phone class="w-8 h-8" aria-hidden="true" />
               </div>
               <div>
-                <h3
-                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
-                >
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">
                   Ventas y Asesoría
                 </h3>
-                <p class="text-brand-earth font-medium">+51 941 234 592</p>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMERO}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-brand-earth font-medium hover:text-brand-green transition-colors"
+                >
+                  {TELEFONO_VISIBLE}
+                </a>
               </div>
             </div>
 
@@ -67,17 +90,18 @@ import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
               <div
                 class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
               >
-                <Mail class="w-8 h-8" />
+                <Mail class="w-8 h-8" aria-hidden="true" />
               </div>
               <div>
-                <h3
-                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
-                >
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">
                   Correo Electrónico
                 </h3>
-                <p class="text-brand-earth font-medium break-all">
-                  agronegociosluyasaperu.sac@gmail.com
-                </p>
+                <a
+                  href={`mailto:${EMAIL}`}
+                  class="text-brand-earth font-medium break-all hover:text-brand-green transition-colors"
+                >
+                  {EMAIL}
+                </a>
               </div>
             </div>
 
@@ -85,17 +109,13 @@ import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
               <div
                 class="bg-brand-light p-4 rounded-2xl border border-brand-green/20 group-hover:bg-brand-green group-hover:text-white transition-colors"
               >
-                <Clock class="w-8 h-8" />
+                <Clock class="w-8 h-8" aria-hidden="true" />
               </div>
               <div>
-                <h3
-                  class="font-bold text-brand-dark text-xl uppercase italic mb-1"
-                >
+                <h3 class="font-bold text-brand-dark text-xl uppercase italic mb-1">
                   Horario
                 </h3>
-                <p class="text-brand-earth font-medium">
-                  Lunes a Sábado: 8am - 6pm
-                </p>
+                <p class="text-brand-earth font-medium">{DIRECCION.horario}</p>
               </div>
             </div>
           </div>
@@ -111,68 +131,107 @@ import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
             Completa los datos y te responderemos al instante.
           </p>
 
-          <form id="whatsapp-form" class="space-y-6">
+          {/*
+            data-netlify="true" hace que Netlify guarde cada envío en su panel.
+            Es la red de seguridad: si el WhatsApp no se llega a enviar o nadie
+            lo ve, el contacto igual queda registrado y llega por correo.
+            El campo "bot-field" es una trampa antispam invisible.
+          */}
+          <form
+            id="whatsapp-form"
+            name="cotizaciones"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            data-whatsapp={WHATSAPP_NUMERO}
+            class="space-y-6"
+          >
+            <input type="hidden" name="form-name" value="cotizaciones" />
+            <p class="hidden">
+              <label>
+                No llenar este campo si eres humano:
+                <input name="bot-field" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
                 <label
                   for="nombre"
-                  class="text-sm font-bold text-brand-dark uppercase tracking-wide"
+                  class="block text-sm font-bold text-brand-dark uppercase tracking-wide"
                   >Nombre</label
                 >
                 <input
                   type="text"
                   id="nombre"
+                  name="nombre"
                   required
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors"
+                  autocomplete="name"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green transition-colors"
                   placeholder="Tu nombre"
                 />
               </div>
+
               <div class="space-y-2">
                 <label
-                  for="ciudad"
-                  class="text-sm font-bold text-brand-dark uppercase tracking-wide"
-                  >Ciudad / Lugar</label
+                  for="telefono"
+                  class="block text-sm font-bold text-brand-dark uppercase tracking-wide"
+                  >Celular / WhatsApp</label
                 >
                 <input
-                  type="text"
-                  id="ciudad"
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
                   required
-                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors"
-                  placeholder="Ej: Satipo, Junín"
+                  autocomplete="tel"
+                  class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green transition-colors"
+                  placeholder="Ej: 941 234 592"
                 />
               </div>
             </div>
 
             <div class="space-y-2">
               <label
+                for="ciudad"
+                class="block text-sm font-bold text-brand-dark uppercase tracking-wide"
+                >Ciudad / Lugar</label
+              >
+              <input
+                type="text"
+                id="ciudad"
+                name="ciudad"
+                required
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green transition-colors"
+                placeholder="Ej: Satipo, Junín"
+              />
+            </div>
+
+            <div class="space-y-2">
+              <label
                 for="cultivo"
-                class="text-sm font-bold text-brand-dark uppercase tracking-wide"
+                class="block text-sm font-bold text-brand-dark uppercase tracking-wide"
                 >Cultivo de interés</label
               >
               <select
                 id="cultivo"
-                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors appearance-none"
+                name="cultivo"
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green transition-colors appearance-none"
               >
-                <option value="Consultar General">Consultar General</option>
-                <option value="Palto">Palto</option>
-                <option value="Cafe">Café</option>
-                <option value="Cacao">Cacao</option>
-                <option value="Piña">Piña</option>
-                <option value="Papa">Papa</option>
-                <option value="Hortalizas">Hortalizas</option>
+                {cultivos.map((c) => <option value={c}>{c}</option>)}
               </select>
             </div>
 
             <div class="space-y-2">
               <label
                 for="mensaje"
-                class="text-sm font-bold text-brand-dark uppercase tracking-wide"
+                class="block text-sm font-bold text-brand-dark uppercase tracking-wide"
                 >Detalle del Pedido</label
               >
               <textarea
                 id="mensaje"
+                name="mensaje"
                 rows="4"
-                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:border-brand-green transition-colors"
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-brand-green transition-colors"
                 placeholder="Hola, quisiera saber el precio de 50 sacos de..."
               ></textarea>
             </div>
@@ -182,51 +241,85 @@ import { Phone, MapPin, Mail, Clock, MessageCircle } from "lucide-astro";
               class="w-full bg-[#25D366] text-white font-black py-4 rounded-xl transition-all hover:bg-[#128C7E] uppercase tracking-wider flex items-center justify-center gap-3 shadow-lg shadow-green-200 transform hover:-translate-y-1"
             >
               <span>Enviar a WhatsApp</span>
-              <MessageCircle class="w-6 h-6" />
+              <MessageCircle class="w-6 h-6" aria-hidden="true" />
             </button>
+
+            <p
+              id="form-estado"
+              role="status"
+              aria-live="polite"
+              class="hidden text-center text-sm font-bold"
+            >
+            </p>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="h-96 w-full bg-gray-200 relative">
+  <section class="w-full bg-gray-200">
     <iframe
-      src="https://www.google.com/maps/embed?..."
-      width="100%"
-      height="450"
-      style="border:0;"
-      allowfullscreen=""
+      src={MAPA_EMBED_URL}
+      class="w-full h-96 block border-0"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
-      title="Mapa de ubicación de Planta Huachipa - Agronegocios Luyasa"
-    ></iframe>
+      title={`Mapa de ubicación: ${DIRECCION.completa}`}></iframe>
   </section>
 </Layout>
 
 <script>
-  const form = document.getElementById("whatsapp-form");
+  function initFormularioContacto() {
+    const form = document.getElementById("whatsapp-form") as HTMLFormElement | null;
+    const estado = document.getElementById("form-estado");
+    if (!form) return;
 
-  if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const nombre = (document.getElementById("nombre") as HTMLInputElement)
-        .value;
-      const ciudad = (document.getElementById("ciudad") as HTMLInputElement)
-        .value;
-      const cultivo = (document.getElementById("cultivo") as HTMLSelectElement)
-        .value;
-      const mensaje = (
-        document.getElementById("mensaje") as HTMLTextAreaElement
-      ).value;
+      const datos = new FormData(form);
+      const leer = (campo: string) => String(datos.get(campo) ?? "").trim();
 
-      const telefonoLuyasa = "51941234592";
+      const nombre = leer("nombre");
+      const telefono = leer("telefono");
+      const ciudad = leer("ciudad");
+      const cultivo = leer("cultivo");
+      const mensaje = leer("mensaje");
 
-      const texto = `Hola Luyasa, mi nombre es *${nombre}* de *${ciudad}*.\nEstoy interesado en productos para *${cultivo}*.\n\nConsulta: ${mensaje}`;
+      const texto =
+        `Hola Luyasa, mi nombre es *${nombre}* de *${ciudad}*.\n` +
+        `Mi celular es *${telefono}*.\n` +
+        `Estoy interesado en productos para *${cultivo}*.` +
+        (mensaje ? `\n\nConsulta: ${mensaje}` : "");
 
-      const url = `https://wa.me/${telefonoLuyasa}?text=${encodeURIComponent(texto)}`;
-      window.open(url, "_blank");
+      // 1) Guardar el envío en Netlify. No lo esperamos: si tarda o falla,
+      //    el cliente igual llega a WhatsApp.
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(datos as any).toString(),
+      }).catch(() => {
+        /* Sin conexión o Forms deshabilitado: WhatsApp sigue funcionando. */
+      });
+
+      // 2) Abrir WhatsApp en este mismo tick. Si lo hiciéramos después de
+      //    await fetch(), el navegador lo bloquearía como popup.
+      //    El número sale de src/consts.ts vía data-attribute: no se duplica aquí.
+      const numero = form.dataset.whatsapp ?? "";
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+      window.open(url, "_blank", "noopener");
+
+      if (estado) {
+        estado.textContent =
+          "¡Listo! Te abrimos WhatsApp con tu mensaje. Si no se abrió, revisa el bloqueador de ventanas emergentes.";
+        estado.classList.remove("hidden");
+        estado.classList.add("text-brand-green");
+      }
+
+      form.reset();
     });
   }
+
+  // Con el ClientRouter la página no recarga: sin esto, el formulario deja de
+  // responder al llegar a /contacto desde otra página del sitio.
+  document.addEventListener("astro:page-load", initFormularioContacto);
 </script>
