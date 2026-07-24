@@ -1,10 +1,15 @@
 ---
-import { Leaf, Award, Truck, Pickaxe } from 'lucide-astro'; // Importamos iconos nuevos
+import { Leaf, Award, Truck, Pickaxe } from '@lucide/astro';
+
+// Textura decorativa como SVG embebido: antes se descargaba de
+// transparenttextures.com, un tercero del que no dependemos para nada.
+const textura =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 20L20 0l20 20-20 20z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E\")";
 ---
 
 <section class="py-20 bg-brand-green text-white relative overflow-hidden">
-  
-  <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+  <div class="absolute inset-0 opacity-10" style={`background-image: ${textura};`} aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-4 relative z-10">
     

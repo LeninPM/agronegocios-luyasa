@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agronegocios-luyasa.netlify.app/sitemap-index.xml

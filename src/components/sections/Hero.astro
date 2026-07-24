@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 // Importamos la imagen desde la nueva ubicación en assets
 import heroBg from '../../assets/images/promocion-en-cultivo.webp';
+import { linkWhatsApp } from '../../consts';
 ---
 
 <section class="relative h-screen min-h-[600px] flex items-center overflow-hidden">
@@ -20,26 +21,26 @@ import heroBg from '../../assets/images/promocion-en-cultivo.webp';
 
   <div class="relative z-20 max-w-7xl mx-auto px-4 flex flex-col justify-center h-full pt-20">
     <div class="max-w-4xl">
-      <span class="block text-brand-sun font-bold uppercase tracking-[0.2em] mb-4 animate-fadeIn">
+      <span class="block text-brand-sun font-bold uppercase tracking-[0.2em] mb-4 animate-fade-in">
         Guano de Isla • Codorniz • Gallinaza
       </span>
       
-      <h1 class="text-5xl md:text-7xl font-black text-white uppercase italic leading-none mb-6 drop-shadow-2xl animate-slideInLeft">
+      <h1 class="text-5xl md:text-7xl font-black text-white uppercase italic leading-none mb-6 drop-shadow-2xl animate-slide-in-left">
         Riqueza NPK <br/>
         <span class="text-brand-green">100% Orgánica</span>
       </h1>
       
-      <p class="text-xl text-white mb-8 max-w-2xl font-medium leading-relaxed animate-fadeIn delayed drop-shadow-md">
+      <p class="text-xl text-white mb-8 max-w-2xl font-medium leading-relaxed animate-fade-in delayed drop-shadow-md">
         Potencia tu cultivo con composiciones ricas en Nitrógeno, Fósforo y Potasio. 
         Garantía de composición y resultados comprobados en campo.
       </p>
       
-      <div class="flex flex-col sm:flex-row gap-4 animate-fadeIn delayed-more">
+      <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delayed-more">
         <a href="/productos" class="bg-brand-green text-brand-dark px-8 py-4 rounded-full font-black hover:bg-brand-sun transition-all shadow-lg hover:shadow-brand-green/50 uppercase tracking-wider text-center border-2 border-transparent">
           Ver Productos
         </a>
         
-        <a href="https://wa.me/51941234592" target="_blank" class="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-black hover:bg-white hover:text-black transition-all uppercase tracking-wider text-center">
+        <a href={linkWhatsApp('Hola, quisiera hablar con un asesor sobre abonos.')} target="_blank" rel="noopener noreferrer" class="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-black hover:bg-white hover:text-black transition-all uppercase tracking-wider text-center">
           Contactar Asesor
         </a>
       </div>
@@ -48,21 +49,29 @@ import heroBg from '../../assets/images/promocion-en-cultivo.webp';
 </section>
 
 <script>
-  const images = document.querySelectorAll('#hero-carousel img');
-  let current = 0;
-  
-  // SOLUCIÓN INTELIGENTE:
-  // Solo activamos el carrusel si hay más de 1 imagen.
-  // Como ahora solo tienes una, esto no gastará recursos del navegador.
-  if (images.length > 1) {
-    setInterval(() => {
-      images[current].classList.remove('opacity-100');
-      images[current].classList.add('opacity-0');
-      
-      current = (current + 1) % images.length;
-      
-      images[current].classList.remove('opacity-0');
-      images[current].classList.add('opacity-100');
-    }, 5000); 
+  // Solo se activa si algún día hay más de una imagen en #hero-carousel.
+  // Con una sola imagen no gasta nada del navegador.
+  let intervalo: ReturnType<typeof setInterval> | null = null;
+
+  function initCarrusel() {
+    if (intervalo) clearInterval(intervalo);
+
+    const images = document.querySelectorAll<HTMLElement>('#hero-carousel img');
+    if (images.length < 2) return;
+
+    let actual = 0;
+    intervalo = setInterval(() => {
+      images[actual].classList.replace('opacity-100', 'opacity-0');
+      actual = (actual + 1) % images.length;
+      images[actual].classList.replace('opacity-0', 'opacity-100');
+    }, 5000);
   }
+
+  // Se re-inicializa en cada navegación del ClientRouter, y se limpia el
+  // intervalo anterior para no dejar temporizadores huérfanos corriendo.
+  document.addEventListener('astro:page-load', initCarrusel);
+  document.addEventListener('astro:before-swap', () => {
+    if (intervalo) clearInterval(intervalo);
+    intervalo = null;
+  });
 </script>

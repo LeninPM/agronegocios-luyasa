@@ -1,24 +1,28 @@
 ---
+import { EMPRESA } from '../../consts';
+
 interface Props {
   title: string;
   subtitle?: string;
-  bgImage?: string; 
+  bgImage?: string;
 }
 
-const { 
-  title, 
-  subtitle = "Agronegocios Luyasa Perú SAC", 
-  // OPTIMIZACIÓN CRÍTICA: Cambié w=2940 por w=1600 para velocidad
-  bgImage = "https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=1600&auto=format&fit=crop" 
+const {
+  title,
+  subtitle = EMPRESA.nombre,
+  // Imagen propia y local: no dependemos de Unsplash ni de una petición externa.
+  bgImage = "/images/fondo-cultivos.jpg"
 } = Astro.props;
 ---
 
 <header class="relative h-[50vh] min-h-100 flex items-center justify-center overflow-hidden">
   
   <div class="absolute inset-0 z-0">
-    <img 
-      src={bgImage} 
-      alt={title} 
+    <!-- Imagen decorativa: el texto real está en el <h1> de abajo. -->
+    <img
+      src={bgImage}
+      alt=""
+      aria-hidden="true"
       class="w-full h-full object-cover"
       loading="eager"
     />
@@ -26,7 +30,7 @@ const {
   </div>
 
   <div class="relative z-10 text-center px-4 mt-20">
-    <span class="block text-brand-sun font-bold uppercase tracking-[0.3em] text-sm mb-4 animate-fadeIn">
+    <span class="block text-brand-sun font-bold uppercase tracking-[0.3em] text-sm mb-4 animate-fade-in">
       {subtitle}
     </span>
     <h1 class="text-5xl md:text-6xl font-black text-white uppercase italic drop-shadow-2xl">

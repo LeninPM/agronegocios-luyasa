@@ -1,0 +1,52 @@
+# Cabeceras de seguridad y caché — Netlify lee este archivo automáticamente.
+# Responde a los 4 hallazgos del escaneo OWASP ZAP (CSP, anti-clickjacking,
+# nosniff y directivas de caché). No requiere plan de pago.
+#
+# Ojo: si algún día se agrega un servicio externo nuevo (un chat, un píxel de
+# Facebook, otro proveedor de video), hay que añadir su dominio a la CSP de
+# abajo o el navegador lo bloqueará en silencio.
+
+/*
+  # --- Anti-clickjacking: nadie puede meter el sitio dentro de un iframe ---
+  X-Frame-Options: DENY
+
+  # --- Evita que el navegador "adivine" el tipo de archivo ---
+  X-Content-Type-Options: nosniff
+
+  # --- No filtrar la URL completa al salir hacia otro sitio ---
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # --- Forzar HTTPS durante un año ---
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+  # --- Apagar APIs del navegador que este sitio no usa ---
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=()
+
+  # --- Aislar la ventana de otras pestañas ---
+  Cross-Origin-Opener-Policy: same-origin
+
+  # --- Content Security Policy ---
+  # 'unsafe-inline' en script-src es necesario porque Astro incrusta sus
+  # scripts pequeños en el HTML. En un sitio estático sin backend, sin login y
+  # sin entrada de usuario que llegue a una plantilla, el riesgo real es nulo:
+  # lo que importa aquí es que NO se pueda cargar un script de un dominio ajeno.
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.tiktok.com https://*.tiktok.com https://*.ttwstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; frame-src https://www.tiktok.com https://*.tiktok.com https://maps.google.com https://www.google.com; connect-src 'self' https://*.tiktok.com; upgrade-insecure-requests
+
+# El HTML se revalida siempre: al publicar un cambio, el cliente lo ve al toque.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Los archivos de /_astro/ llevan hash en el nombre: cachear un año es seguro.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imágenes y PDFs no llevan hash. Un día de caché: rápido, pero si se reemplaza
+# una foto el cambio se ve al día siguiente sin tener que limpiar nada.
+/images/*
+  Cache-Control: public, max-age=86400
+
+/docs/*
+  Cache-Control: public, max-age=86400
