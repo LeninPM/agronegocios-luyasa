@@ -29,7 +29,7 @@ fichaTecnica:
     - "Mejora la retención de agua en suelos arenosos gracias a su alta Materia Orgánica."
     - "Recupera suelos degradados por agricultura intensiva."
 
-  aplicacion: "Para hortalizas (lechuga, apio), aplicar al momento del trasplante o 15 días después. Incorporar al suelo húmedo. Dosis: 100g - 200g por metro lineal o planta."
+  aplicacion: "Para hortalizas (lechuga, apio), aplicar al momento del trasplante o 15 días después. Incorporar al suelo húmedo. Dosis sugerida: de 200 g a 300 g por planta (aproximadamente un puñado a un puñado y medio)."
   cultivos: ["Lechuga", "Espinaca", "Acelga", "Apio", "Hortalizas"]
   certificaciones: ["Kiwa BCS Öko-Garantie"]
 ---
