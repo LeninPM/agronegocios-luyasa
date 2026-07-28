@@ -1,8 +1,8 @@
 ---
 titulo: "Premium Nutrimix"
 nombre: "Premium Nutrimix - Alta Producción"
-descripcion: "Nuestra fórmula más potente en Potasio para máxima calidad de fruto."
-resumen: "Concentrado Premium con mayor porcentaje de Potasio para agroexportación y calidad extra."
+descripcion: "Nuestra fórmula más potente en Potasio para frutales y cítricos de agroexportación."
+resumen: "Concentrado Premium con mayor porcentaje de Potasio, especialmente para todo tipo de frutales y cítricos. Ideal para agroexportación y calidad extra."
 imagen: "../../assets/images/premium-nutrimix.webp"
 pdf: "/docs/FICHA_TECNICA_PREMIUM_NUTRIMIX.pdf"
 destacado: true
@@ -30,7 +30,7 @@ fichaTecnica:
     - "Ideal para cultivos de agroexportación que exigen calibre."
     - "Potasio de rápida asimilación orgánica para el llenado."
 
-  aplicacion: "Aplicar en corona a 30cm del tallo en pre-floración y maduración. Mezclar con tierra húmeda. Dosis sugerida: 2kg por planta adulta (Palto/Cacao)."
-  cultivos: ["Palta Hass", "Arándano", "Uva", "Mango", "Agroexportación"]
+  aplicacion: "Aplicar en corona a 30 cm del tallo en pre-floración y maduración. Mezclar con tierra húmeda. Dosis sugerida: de acuerdo a la etapa fenológica de la planta."
+  cultivos: ["Frutales", "Cítricos", "Palta Hass", "Arándano", "Uva", "Mango"]
   certificaciones: ["Kiwa BCS Öko-Garantie"]
 ---

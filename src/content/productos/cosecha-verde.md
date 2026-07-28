@@ -1,8 +1,8 @@
 ---
 titulo: "Cosecha Verde"
-nombre: "Cosecha Verde - Mezcla Especial Frutales"
-descripcion: "Fórmula balanceada con Roca Fosfórica y Ceniza para Café, Cacao y Frutales."
-resumen: "Potencia el cuajado, peso y calibre del grano. Ideal para Café y Cacao."
+nombre: "Cosecha Verde - Especial para Palta"
+descripcion: "Fórmula balanceada con Roca Fosfórica y Ceniza, ideal para Palta y frutales."
+resumen: "Potencia el cuajado, peso y calibre del fruto. Ideal para Palta."
 imagen: "../../assets/images/cosecha-verde.webp"
 pdf: "/docs/FICHA_TECNICA_COSECHA_VERDE.pdf"
 destacado: true
@@ -26,11 +26,11 @@ fichaTecnica:
 
   beneficios:
     - "Mejora el cuajado y evita la caída de frutos pequeños."
-    - "Aumenta el peso y calibre del grano (Café/Cacao)."
-    - "El Fósforo y Roca Fosfórica garantizan un óptimo desarrollo radicular."
-    - "Aporta Magnesio vital para mantener el verdor en cultivos tropicales."
+    - "Aumenta el peso y calibre del fruto en la palta."
+    - "El Fósforo y la Roca Fosfórica garantizan un óptimo desarrollo radicular."
+    - "Aporta Magnesio vital para el vigor y verdor del cultivo."
 
-  aplicacion: "Ideal para pre-floración y formación de fruto. En Palto y Cacao, aplicar en corona (anillo) a la proyección de la copa. Dosis sugerida: 1kg a 3kg por árbol según edad."
-  cultivos: ["Café", "Cacao", "Palta", "Cítricos"]
+  aplicacion: "Ideal para la pre-floración y formación de fruto. En palto, aplicar en corona (anillo) a la proyección de la copa. Dosis sugerida: de acuerdo a la etapa fenológica de la planta."
+  cultivos: ["Palta", "Cítricos", "Frutales"]
   certificaciones: ["Kiwa BCS Öko-Garantie"]
 ---
