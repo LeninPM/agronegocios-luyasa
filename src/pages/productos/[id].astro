@@ -25,6 +25,14 @@ const { nombre, titulo, imagen, fichaTecnica, resumen, pdf } = product.data;
 // cada vez que se agregaba un producto.
 const analisis = fichaTecnica?.analisisGarantizado;
 
+// Fondo tenue de la página, específico por cultivo (fotos propias de Luyasa).
+// Premium Nutrimix queda con el fondo neutro hasta tener una foto de cítricos.
+const fondosPorProducto: Record<string, string> = {
+  "cosecha-verde": "/images/clientes/cosecha-palta.jpeg",   // palta
+  "isla-max": "/images/clientes/campo-papa.jpeg",           // hortalizas / papa
+};
+const fondoPagina = fondosPorProducto[product.slug] ?? "/images/fondo-cultivos.jpg";
+
 // Nombre legible de cada fila del análisis: "materiaOrganica" -> "Materia Organica"
 const etiquetaNutriente = (clave: string) =>
   clave.replace(/([A-Z])/g, ' $1').replace(/^./, (c) => c.toUpperCase());
@@ -47,7 +55,7 @@ const certificados = [
 
     <div class="fixed inset-0 z-0 h-full w-full pointer-events-none">
         <img
-            src="/images/fondo-cultivos.jpg"
+            src={fondoPagina}
             alt=""
             aria-hidden="true"
             class="w-full h-full object-cover opacity-60"
