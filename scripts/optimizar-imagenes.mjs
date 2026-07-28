@@ -9,10 +9,23 @@ let antes = 0;
 let despues = 0;
 const filas = [];
 
-for (const nombre of (await fs.readdir(DIR)).sort()) {
-  const ruta = path.join(DIR, nombre);
+// Recorre DIR y todas sus subcarpetas (p. ej. public/images/clientes/).
+async function listarImagenes(dir) {
+  const entradas = await fs.readdir(dir, { withFileTypes: true });
+  const archivos = [];
+  for (const e of entradas.sort((a, b) => a.name.localeCompare(b.name))) {
+    const ruta = path.join(dir, e.name);
+    if (e.isDirectory()) archivos.push(...(await listarImagenes(ruta)));
+    else if (['.png', '.jpg', '.jpeg'].includes(path.extname(e.name).toLowerCase())) {
+      archivos.push(ruta);
+    }
+  }
+  return archivos;
+}
+
+for (const ruta of await listarImagenes(DIR)) {
+  const nombre = path.basename(ruta);
   const ext = path.extname(nombre).toLowerCase();
-  if (!['.png', '.jpg', '.jpeg'].includes(ext)) continue;
 
   const original = (await fs.stat(ruta)).size;
   const buf = await fs.readFile(ruta);
@@ -42,8 +55,10 @@ for (const nombre of (await fs.readdir(DIR)).sort()) {
   const salida = await pipe.toBuffer();
 
   antes += original;
-  // Si comprimir no ayuda (ya estaba optimizada), dejamos el archivo original.
-  if (salida.length < original) {
+  // Solo reescribe si el ahorro es real (>3%). Así, correr el script varias
+  // veces no vuelve a re-comprimir imágenes ya optimizadas (cada re-encode
+  // JPEG degrada un poco la calidad).
+  if (salida.length < original * 0.97) {
     await fs.writeFile(ruta, salida);
     despues += salida.length;
     filas.push(

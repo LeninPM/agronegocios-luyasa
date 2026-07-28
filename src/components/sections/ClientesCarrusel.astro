@@ -1,0 +1,165 @@
+---
+// Carrusel de testimonios / resultados de clientes reales.
+// Las fotos viven en public/images/clientes/ (optimizadas con `npm run img`).
+const slides = [
+  { src: "/images/clientes/cosecha-palta.jpeg", caption: "Cosecha de palta de nuestros clientes" },
+  { src: "/images/clientes/campo-papa.jpeg", caption: "Campo de papa nutrido con Guano de Isla" },
+  { src: "/images/clientes/cliente-maiz.jpeg", caption: "Maizal vigoroso con abono orgánico" },
+  { src: "/images/clientes/cliente-ciruelo.jpeg", caption: "Frutales cargados en campo de cliente" },
+  { src: "/images/clientes/cliente-frutal-papa.jpeg", caption: "Productores que confían en Luyasa" },
+  { src: "/images/clientes/cliente-alfalfa.jpeg", caption: "Alfalfa densa y verde" },
+  { src: "/images/clientes/entrega-sacos-guano.jpeg", caption: "Entrega de Guano de las Islas" },
+  { src: "/images/clientes/cliente-stock-sacos.jpeg", caption: "Clientes con su stock de abono" },
+];
+---
+
+<section id="clientes" class="py-20 bg-brand-light border-t border-gray-200">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-brand-green font-bold uppercase tracking-widest text-sm mb-4 block">
+        Resultados Reales en Campo
+      </span>
+      <h2 class="text-4xl font-black text-brand-dark uppercase italic mb-4">
+        Nuestros Clientes
+      </h2>
+      <p class="text-brand-earth text-lg font-medium">
+        Agricultores de todo el Perú que ya cosechan más con nuestros abonos orgánicos.
+      </p>
+    </div>
+
+    <div class="relative" data-carrusel>
+      <!-- Botón anterior -->
+      <button
+        type="button"
+        data-prev
+        aria-label="Ver testimonio anterior"
+        class="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 text-brand-dark shadow-lg flex items-center justify-center hover:bg-brand-sun hover:text-white transition-colors disabled:opacity-0"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+
+      <!-- Pista deslizable -->
+      <ul
+        data-track
+        class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 no-scrollbar"
+        tabindex="0"
+        aria-label="Galería de resultados de clientes"
+      >
+        {slides.map((s, i) => (
+          <li class="snap-start shrink-0 w-[82%] sm:w-[22rem]">
+            <figure class="relative h-[26rem] rounded-3xl overflow-hidden shadow-xl border border-white/50 group">
+              <img
+                src={s.src}
+                alt={s.caption}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"></div>
+              <figcaption class="absolute bottom-0 left-0 right-0 p-6 text-white font-bold text-lg leading-tight drop-shadow-md">
+                {s.caption}
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Botón siguiente -->
+      <button
+        type="button"
+        data-next
+        aria-label="Ver testimonio siguiente"
+        class="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 text-brand-dark shadow-lg flex items-center justify-center hover:bg-brand-sun hover:text-white transition-colors disabled:opacity-0"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <!-- Puntos -->
+      <div data-dots class="flex justify-center gap-2 mt-6" role="tablist" aria-label="Ir a un testimonio">
+        {slides.map((_, i) => (
+          <button
+            type="button"
+            data-dot={i}
+            aria-label={`Ir al testimonio ${i + 1}`}
+            class="w-2.5 h-2.5 rounded-full bg-brand-earth/30 transition-all"
+          ></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Oculta la barra de scroll pero deja el arrastre táctil intacto. */
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+</style>
+
+<script>
+  function initCarrusel() {
+    document.querySelectorAll<HTMLElement>("[data-carrusel]").forEach((raiz) => {
+      const track = raiz.querySelector<HTMLElement>("[data-track]");
+      const prev = raiz.querySelector<HTMLButtonElement>("[data-prev]");
+      const next = raiz.querySelector<HTMLButtonElement>("[data-next]");
+      const dots = [...raiz.querySelectorAll<HTMLButtonElement>("[data-dot]")];
+      if (!track) return;
+
+      // Paso = ancho de una tarjeta + separación (gap).
+      const paso = () => {
+        const primera = track.querySelector("li");
+        if (!primera) return track.clientWidth;
+        const gap = parseFloat(getComputedStyle(track).columnGap || "0") || 0;
+        return primera.getBoundingClientRect().width + gap;
+      };
+
+      const indiceActual = () => Math.round(track.scrollLeft / paso());
+      const maxIndice = () => track.children.length - 1;
+
+      const irA = (i: number) => {
+        const idx = Math.max(0, Math.min(i, maxIndice()));
+        track.scrollTo({ left: idx * paso(), behavior: "smooth" });
+      };
+
+      const avanzar = () => {
+        // Si estamos al final, volvemos al inicio (loop).
+        if (indiceActual() >= maxIndice()) irA(0);
+        else irA(indiceActual() + 1);
+      };
+
+      const pintarDots = () => {
+        const activo = indiceActual();
+        dots.forEach((d, i) => {
+          const on = i === activo;
+          d.classList.toggle("bg-brand-sun", on);
+          d.classList.toggle("w-6", on);
+          d.classList.toggle("bg-brand-earth/30", !on);
+        });
+      };
+
+      prev?.addEventListener("click", () => irA(indiceActual() - 1));
+      next?.addEventListener("click", () => irA(indiceActual() + 1));
+      dots.forEach((d, i) => d.addEventListener("click", () => irA(i)));
+      track.addEventListener("scroll", pintarDots, { passive: true });
+      pintarDots();
+
+      // Autoplay, salvo que el usuario prefiera menos movimiento.
+      const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!sinMovimiento) {
+        let timer = window.setInterval(avanzar, 4500);
+        const parar = () => window.clearInterval(timer);
+        const seguir = () => {
+          parar();
+          timer = window.setInterval(avanzar, 4500);
+        };
+        raiz.addEventListener("mouseenter", parar);
+        raiz.addEventListener("mouseleave", seguir);
+        raiz.addEventListener("focusin", parar);
+        raiz.addEventListener("focusout", seguir);
+        // Limpia el temporizador antes de cambiar de página con ClientRouter.
+        document.addEventListener("astro:before-swap", parar, { once: true });
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", initCarrusel);
+</script>
