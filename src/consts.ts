@@ -14,29 +14,34 @@ export const EMAIL = 'agronegociosluyasaperu.sac@gmail.com';
 export const EMPRESA = {
   nombre: 'Agronegocios Luyasa Perú SAC',
   nombreCorto: 'Agronegocios Luyasa',
+  /** Razón social exacta según SUNAT. */
+  razonSocial: 'Agro Negocios Luyasa Perú S.A.C.',
+  ruc: '20612719005',
   fundacion: 2016,
   representante: 'Samy López Carbajal',
 };
 
 export const DIRECCION = {
-  calle: 'Av. La Capitana',
-  distrito: 'Huachipa',
+  /** La planta está en Huachipa, dentro del distrito de Lurigancho-Chosica. */
+  zona: 'Huachipa',
+  distrito: 'Lurigancho-Chosica',
   ciudad: 'Lima',
   pais: 'Perú',
-  /** Cómo se muestra en la web. */
-  completa: 'Av. La Capitana, Huachipa, Lima - Perú',
+  /** Versión corta (footer). */
+  corta: 'Huachipa, Lurigancho-Chosica',
+  /** Cómo se muestra en la web (página de contacto). */
+  completa: 'Huachipa, Lurigancho-Chosica, Lima - Perú',
   horario: 'Lunes a Sábado: 8am - 6pm',
 };
 
 /**
- * Embed de Google Maps sin API key.
- * Si algún día quieren el pin exacto (número de puerta), se reemplaza esta URL
- * por la que genera "Compartir > Insertar un mapa" en Google Maps.
+ * Embed de Google Maps sin API key. Apunta a la ficha del negocio en Google
+ * Maps (Agronegocios Luyasa Perú SAC), por lo que muestra el pin real de la planta.
  */
 export const MAPA_EMBED_URL =
   'https://maps.google.com/maps?q=' +
-  encodeURIComponent('Av. La Capitana, Huachipa, Lima, Perú') +
-  '&z=15&output=embed';
+  encodeURIComponent('Agronegocios Luyasa Perú SAC, Lurigancho-Chosica, Lima') +
+  '&z=16&output=embed';
 
 export const REDES = {
   facebook: 'https://www.facebook.com/share/17qDhfq5jm/',

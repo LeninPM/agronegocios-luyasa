@@ -51,7 +51,7 @@ const anioActual = new Date().getFullYear();
         <ul class="space-y-4 text-base font-medium text-white/90">
           <li class="flex flex-col">
             <span class="text-xs text-[#D4A373] font-bold uppercase">Planta:</span>
-            <span>{DIRECCION.calle}, {DIRECCION.distrito}, {DIRECCION.ciudad}</span>
+            <span>{DIRECCION.corta}, {DIRECCION.ciudad}</span>
           </li>
           <li class="flex flex-col">
             <span class="text-xs text-[#D4A373] font-bold uppercase">WhatsApp:</span>
@@ -69,7 +69,7 @@ const anioActual = new Date().getFullYear();
 
     <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs font-bold text-white/40 uppercase tracking-[0.2em] gap-4">
       <div>
-        © {anioActual} {EMPRESA.nombre} - Todos los derechos reservados.
+        © {anioActual} {EMPRESA.nombre} · RUC {EMPRESA.ruc} - Todos los derechos reservados.
       </div>
 
       <!-- mr-16 en móvil: deja libre la esquina donde flota el botón de WhatsApp -->
