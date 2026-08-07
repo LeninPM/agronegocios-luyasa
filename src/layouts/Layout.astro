@@ -3,7 +3,15 @@ import '../styles/global.css';
 import Navbar from '../components/ui/Navbar.astro';
 import Footer from '../components/ui/Footer.astro';
 import { ClientRouter } from 'astro:transitions';
-import { DESCRIPCION_DEFECTO, EMPRESA, linkWhatsApp } from '../consts';
+import {
+  DESCRIPCION_DEFECTO,
+  DIRECCION,
+  EMAIL,
+  EMPRESA,
+  REDES,
+  WHATSAPP_NUMERO,
+  linkWhatsApp,
+} from '../consts';
 import logoImg from '../assets/images/logo.png';
 
 interface Props {
@@ -16,7 +24,9 @@ interface Props {
 const {
   title,
   description = DESCRIPCION_DEFECTO,
-  image = logoImg.src,
+  // Preview al compartir en WhatsApp/Facebook. Foto de cosecha (1200x630 JPG),
+  // mucho más atractiva que el logo. Las páginas de producto pasan su propia imagen.
+  image = '/og-image.jpg',
 } = Astro.props;
 
 // Astro.site viene de `site` en astro.config.mjs. Sin eso, esto caería a localhost
@@ -27,15 +37,61 @@ const ogImage = new URL(image, Astro.site);
 const whatsappHref = linkWhatsApp(
   'Hola, quisiera más información sobre sus productos.'
 );
+
+// Datos estructurados (JSON-LD) para Google. Le dice que somos un negocio real
+// en Lima con teléfono, horario y redes, para aparecer en Google Maps y en la
+// búsqueda local. Se emite en TODAS las páginas desde el <head>.
+const negocioJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': new URL('/#negocio', Astro.site).href,
+  name: EMPRESA.nombre,
+  legalName: EMPRESA.razonSocial,
+  url: Astro.site?.href,
+  logo: new URL(logoImg.src, Astro.site).href,
+  image: new URL('/og-image.jpg', Astro.site).href,
+  email: EMAIL,
+  telephone: `+${WHATSAPP_NUMERO}`,
+  foundingDate: String(EMPRESA.fundacion),
+  taxID: EMPRESA.ruc,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: DIRECCION.zona,
+    addressLocality: DIRECCION.distrito,
+    addressRegion: DIRECCION.ciudad,
+    addressCountry: 'PE',
+  },
+  areaServed: [
+    { '@type': 'Country', name: 'Perú' },
+    { '@type': 'Country', name: 'Bolivia' },
+  ],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ],
+    opens: '08:00',
+    closes: '18:00',
+  },
+  sameAs: [REDES.facebook, REDES.instagram, REDES.tiktok],
+};
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es-PE" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#778E46" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
@@ -53,6 +109,11 @@ const whatsappHref = linkWhatsApp(
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(negocioJsonLd)}
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

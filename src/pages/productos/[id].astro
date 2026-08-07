@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import { linkWhatsApp } from '../../consts';
+import { EMPRESA, linkWhatsApp } from '../../consts';
 
 export async function getStaticPaths() {
   const products = await getCollection('productos');
@@ -43,6 +43,26 @@ const certificados = [
   { src: '/images/certificado-3.jpg', alt: 'Análisis de laboratorio UNALM' },
   { src: '/images/certificado-4.svg', alt: 'Producto 100% orgánico' },
 ];
+
+// Datos estructurados de Producto para Google (Rich Results). Incluye el
+// análisis NPK como propiedades. Sin precio a propósito: la venta es por
+// cotización, y un precio inventado daría un dato falso a Google.
+const productoJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: nombre,
+  description: resumen,
+  image: new URL(imagen.src, Astro.site).href,
+  brand: { '@type': 'Brand', name: EMPRESA.nombreCorto },
+  category: 'Abono orgánico',
+  ...(analisis && {
+    additionalProperty: Object.entries(analisis).map(([clave, valor]) => ({
+      '@type': 'PropertyValue',
+      name: etiquetaNutriente(clave),
+      value: valor,
+    })),
+  }),
+};
 ---
 
 <Layout
@@ -50,6 +70,10 @@ const certificados = [
   description={resumen}
   image={imagen.src}
 >
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(productoJsonLd)}
+  />
 
   <div class="relative w-full min-h-screen pt-32 pb-20">
 
