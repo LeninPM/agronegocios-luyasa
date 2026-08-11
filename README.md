@@ -4,7 +4,7 @@ Sitio institucional y catálogo de productos, hecho con [Astro](https://astro.bu
 Es un sitio **100% estático**: no hay servidor, ni base de datos, ni login.
 Astro genera archivos HTML durante el build y Netlify los sirve tal cual.
 
-- **Producción:** https://agronegocios-luyasa.netlify.app
+- **Producción:** https://agronegociosluyasa.pe
 - **Hosting:** Netlify (plan gratuito, deploy automático al hacer push a `main`)
 
 ---

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://agronegocios-luyasa.netlify.app/sitemap-index.xml
+Sitemap: https://agronegociosluyasa.pe/sitemap-index.xml
